@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BallotGap PHL — Philadelphia Polling Place Accessibility Finder</title>
+<meta name="description" content="Find your Philadelphia polling place and see if it's accessible. Live data from the Philadelphia City Commissioners.">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin="" />
+
+<!-- Public Sans (US Government typeface) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ========================================
+   BallotGap PHL — Styles
+   ======================================== */
+
+:root {
+  --bg: #F5F5F0;
+  --text: #1A1A1A;
+  --text-muted: #555;
+  --civic-blue: #003366;
+  --civic-blue-light: #0A4D8C;
+  --accessible-green: #2E7D32;
+  --accessible-green-bg: #E8F5E9;
+  --caution-amber: #E65100;
+  --caution-amber-bg: #FFF3E0;
+  --barrier-red: #B71C1C;
+  --barrier-red-bg: #FFEBEE;
+  --unknown-gray: #616161;
+  --unknown-gray-bg: #F5F5F5;
+  --white: #FFFFFF;
+  --border: #D0D0D0;
+  --focus-ring: #1565C0;
+  --font: 'Public Sans', system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--civic-blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  z-index: 10000;
+  border-radius: 0 0 4px 4px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---- HEADER ---- */
+header {
+  background: var(--civic-blue);
+  color: var(--white);
+  padding: 1rem 1.25rem;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.site-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.site-title span {
+  font-weight: 400;
+  font-size: 0.85rem;
+  display: block;
+  opacity: 0.85;
+  margin-top: 0.15rem;
+}
+
+.lang-toggle {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.6);
+  color: var(--white);
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--white);
+}
+
+/* ---- SEARCH ---- */
+.search-section {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+}
+
+.search-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.6rem 0.85rem;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--white);
+  min-width: 0;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-btn {
+  background: var(--civic-blue);
+  color: var(--white);
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 4px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.search-btn:hover,
+.search-btn:focus-visible {
+  background: var(--civic-blue-light);
+}
+
+.search-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+/* ---- STATS BAR ---- */
+.stats-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1.25rem;
+}
+
+.stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+}
+
+.stat-chip .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.stat-chip.accessible { background: var(--accessible-green-bg); color: var(--accessible-green); }
+.stat-chip.accessible .dot { background: var(--accessible-green); }
+.stat-chip.partial { background: var(--caution-amber-bg); color: var(--caution-amber); }
+.stat-chip.partial .dot { background: var(--caution-amber); }
+.stat-chip.limited { background: var(--barrier-red-bg); color: var(--barrier-red); }
+.stat-chip.limited .dot { background: var(--barrier-red); }
+
+.stats-loading {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ---- MAP ---- */
+.map-container {
+  flex: 1;
+  min-height: 400px;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  z-index: 1;
+}
+
+/* ---- DETAIL PANEL ---- */
+.detail-panel {
+  background: var(--white);
+  border-top: 3px solid var(--civic-blue);
+  padding: 1.25rem;
+  display: none;
+}
+
+.detail-panel.visible {
+  display: block;
+}
+
+.detail-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.detail-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.detail-address {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.detail-close {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.detail-close:hover {
+  background: var(--bg);
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .detail-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.detail-card {
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid;
+}
+
+.detail-card.card-accessible {
+  background: var(--accessible-green-bg);
+  border-color: var(--accessible-green);
+}
+
+.detail-card.card-partial {
+  background: var(--caution-amber-bg);
+  border-color: var(--caution-amber);
+}
+
+.detail-card.card-limited {
+  background: var(--barrier-red-bg);
+  border-color: var(--barrier-red);
+}
+
+.detail-card.card-unknown {
+  background: var(--unknown-gray-bg);
+  border-color: var(--unknown-gray);
+}
+
+.detail-card-label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.detail-card-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ---- RIGHTS SECTION ---- */
+.rights-section {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 1.25rem;
+}
+
+.rights-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rights-heading {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--civic-blue);
+}
+
+.rights-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .rights-content {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.rights-block {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.rights-block strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.rights-block a {
+  color: var(--civic-blue);
+  text-decoration: underline;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  background: var(--civic-blue);
+  color: rgba(255,255,255,0.85);
+  padding: 1rem 1.25rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+footer a {
+  color: var(--white);
+}
+
+footer strong {
+  color: var(--white);
+}
+
+/* ---- SEARCH RESULT MARKER ---- */
+.nearest-badge {
+  display: inline-block;
+  background: var(--civic-blue);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-bottom: 0.35rem;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 600px) {
+  .site-title {
+    font-size: 1.15rem;
+  }
+
+  .search-row {
+    flex-direction: column;
+  }
+
+  .search-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stats-inner {
+    gap: 0.5rem;
+  }
+
+  .stat-chip {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .map-container {
+    min-height: 350px;
+  }
+
+  #map {
+    min-height: 350px;
+  }
+}
+
+/* ---- LOADING STATE ---- */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(245,245,240,0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.loading-overlay.hidden {
+  display: none;
+}
+
+/* ---- POPUP STYLES ---- */
+.leaflet-popup-content {
+  font-family: var(--font);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  max-width: 260px;
+}
+
+.popup-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.popup-address {
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.popup-status {
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  margin-bottom: 0.3rem;
+}
+
+.popup-parking {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.popup-ward {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.popup-detail-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--civic-blue);
+  cursor: pointer;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  font-family: var(--font);
+  padding: 0;
+}
+
+/* Print styles */
+@media print {
+  header, .search-section, .stats-bar, .map-container, footer {
+    display: none;
+  }
+
+  .detail-panel, .rights-section {
+    display: block !important;
+    border: none;
+  }
+}
+</style>
+</head>
+
+<body>
+  <a class="skip-link" href="#map" data-i18n="skipToMap">Skip to map</a>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="site-title" role="banner">
+        BallotGap PHL
+        <span data-i18n="subtitle">Philadelphia Polling Place Accessibility</span>
+      </div>
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language to Spanish">
+        Español
+      </button>
+    </div>
+  </header>
+
+  <!-- SEARCH -->
+  <section class="search-section" role="search">
+    <div class="search-inner">
+      <label class="search-label" for="addressInput" data-i18n="searchLabel">Find your polling place</label>
+      <div class="search-row">
+        <input
+          type="text"
+          id="addressInput"
+          class="search-input"
+          placeholder="Enter your Philadelphia address"
+          data-i18n-placeholder="searchPlaceholder"
+          autocomplete="street-address"
+        />
+        <button class="search-btn" id="searchBtn" data-i18n="searchBtn">Search</button>
+      </div>
+      <p class="search-hint" id="searchHint" data-i18n="searchHint">
+        We'll find the nearest polling places and show their accessibility status.
+        For your official assigned location, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar" role="region" aria-label="Accessibility statistics">
+    <div class="stats-inner" id="statsBar">
+      <span class="stats-loading" data-i18n="statsLoading">Loading polling place data...</span>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <main class="map-container" id="mapContainer">
+    <div id="map" role="application" aria-label="Map of Philadelphia polling places"></div>
+    <div class="loading-overlay" id="loadingOverlay">
+      <span data-i18n="mapLoading">Loading 1,700+ polling places...</span>
+    </div>
+  </main>
+
+  <!-- DETAIL PANEL -->
+  <aside class="detail-panel" id="detailPanel" role="complementary" aria-label="Polling place details" aria-live="polite">
+    <div class="detail-inner">
+      <div class="detail-header">
+        <div>
+          <div class="detail-name" id="detailName"></div>
+          <div class="detail-address" id="detailAddress"></div>
+          <div class="detail-ward" id="detailWard" style="font-size:0.82rem; color:var(--text-muted); margin-top:0.2rem;"></div>
+        </div>
+        <button class="detail-close" id="detailClose" aria-label="Close details" data-i18n="close">Close</button>
+      </div>
+      <div class="detail-grid" id="detailGrid"></div>
+    </div>
+  </aside>
+
+  <!-- RIGHTS SECTION -->
+  <section class="rights-section" role="region" aria-label="Your voting rights">
+    <div class="rights-inner">
+      <h2 class="rights-heading" data-i18n="rightsHeading">Your Rights as a Disabled Voter in Philadelphia</h2>
+      <div class="rights-content" id="rightsContent">
+        <div class="rights-block">
+          <strong data-i18n="rightsAccessTitle">Accessible Voting Machines</strong>
+          <span data-i18n="rightsAccessText">Every polling place in Pennsylvania must have at least one accessible voting system. You can ask poll workers for help using it.</span>
+        </div>
+        <div class="rights-block">
+          <strong data-i18n="rightsAssistTitle">Bring Someone to Help</strong>
+          <span data-i18n="rightsAssistText">If you need help voting due to a disability, you can bring a person of your choice to assist you in the voting booth (with some restrictions on who).</span>
+        </div>
+        <div class="rights-block">
+          <strong data-i18n="rightsAltTitle">Alternative Ballot Options</strong>
+          <span data-i18n="rightsAltText">If your polling place isn't fully accessible, you can vote by mail, request an Alternative Ballot, or vote at City Hall Room 142 on Election Day. Contact <a href="tel:2156868683">(215) 686-VOTE</a> or visit <a href="https://vote.phila.gov/voting/vote-by-mail/" target="_blank" rel="noopener">vote.phila.gov</a>.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <strong>Data source:</strong> <a href="https://opendataphilly.org/datasets/polling-places/" target="_blank" rel="noopener">Philadelphia City Commissioners via OpenDataPhilly</a> (CARTO API, continuously updated).
+      Polling place assignments are determined by your ward and division.
+      This tool shows accessibility status — for your official assignment, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.
+      <br>
+      <strong data-i18n="builtBy">Built for</strong> <a href="https://www.aapd.com/disability-voting-rights-week/" target="_blank" rel="noopener">Disability Voting Rights Week 2026</a>.
+      Open source. No data is collected. No cookies.
+    </div>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+  <script>
+  /* ========================================
+     BallotGap PHL — Application Logic
+     ======================================== */
+
+  (function() {
+    'use strict';
+
+    // ---- STATE ----
+    let allPlaces = [];
+    let map = null;
+    let markers = [];
+    let searchMarker = null;
+    let currentLang = 'en';
+
+    // ---- ACCESSIBILITY CODE MAPPINGS ----
+    const ACCESS_CODES = {
+      'F':  { level: 'accessible', en: 'Building Accessible', es: 'Edificio Accesible' },
+      'FH': { level: 'accessible', en: 'Fully Accessible (Building + Parking)', es: 'Totalmente Accesible (Edificio + Estacionamiento)' },
+      'B':  { level: 'partial', en: 'Building Accessible (Partial)', es: 'Edificio Accesible (Parcial)' },
+      'R':  { level: 'partial', en: 'Accessible with Ramp', es: 'Accesible con Rampa' },
+      'N':  { level: 'limited', en: 'Not Fully Accessible', es: 'No Totalmente Accesible' },
+      'T':  { level: 'partial', en: 'Temporarily Accessible', es: 'Temporalmente Accesible' },
+    };
+
+    const PARKING_CODES = {
+      'H': { en: 'Accessible parking available', es: 'Estacionamiento accesible disponible' },
+      'L': { en: 'Limited parking', es: 'Estacionamiento limitado' },
+      'N': { en: 'No accessible parking', es: 'Sin estacionamiento accesible' },
+      'G': { en: 'Garage parking', es: 'Estacionamiento en garaje' },
+      'S': { en: 'Street parking only', es: 'Solo estacionamiento en la calle' },
+    };
+
+    const LEVEL_COLORS = {
+      accessible: '#2E7D32',
+      partial: '#E65100',
+      limited: '#B71C1C',
+      unknown: '#616161'
+    };
+
+    // ---- i18n ----
+    const STRINGS = {
+      en: {
+        skipToMap: 'Skip to map',
+        subtitle: 'Philadelphia Polling Place Accessibility',
+        searchLabel: 'Find your polling place',
+        searchPlaceholder: 'Enter your Philadelphia address',
+        searchBtn: 'Search',
+        searchHint: 'We\'ll find the nearest polling places and show their accessibility status. For your official assigned location, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.',
+        statsLoading: 'Loading polling place data...',
+        mapLoading: 'Loading 1,700+ polling places...',
+        close: 'Close',
+        rightsHeading: 'Your Rights as a Disabled Voter in Philadelphia',
+        rightsAccessTitle: 'Accessible Voting Machines',
+        rightsAccessText: 'Every polling place in Pennsylvania must have at least one accessible voting system. You can ask poll workers for help using it.',
+        rightsAssistTitle: 'Bring Someone to Help',
+        rightsAssistText: 'If you need help voting due to a disability, you can bring a person of your choice to assist you in the voting booth (with some restrictions on who).',
+        rightsAltTitle: 'Alternative Ballot Options',
+        rightsAltText: 'If your polling place isn\'t fully accessible, you can vote by mail, request an Alternative Ballot, or vote at City Hall Room 142 on Election Day. Contact <a href="tel:2156868683">(215) 686-VOTE</a> or visit <a href="https://vote.phila.gov/voting/vote-by-mail/" target="_blank" rel="noopener">vote.phila.gov</a>.',
+        builtBy: 'Built for',
+        buildingStatus: 'Building Accessibility',
+        parkingStatus: 'Parking Accessibility',
+        nearestLabel: 'Nearest to your search',
+        noResults: 'No results found. Try a Philadelphia street address.',
+        statsTotal: 'polling places total',
+        statsAccessible: 'building accessible',
+        statsWithParking: 'with accessible parking',
+        ward: 'Ward',
+        division: 'Division',
+        moreDetail: 'See details & rights',
+        whatThisMeans: 'What this means for you:',
+        accessibleExplain: 'This building meets accessibility standards. You should be able to enter and navigate the polling place independently.',
+        partialExplain: 'This building may have some accessibility features but might not meet all ADA standards. Contact (215) 686-VOTE before Election Day to confirm.',
+        limitedExplain: 'This building has known accessibility barriers. You have the right to vote by Alternative Ballot or at City Hall. Contact (215) 686-VOTE for options.',
+        unknownExplain: 'Accessibility status wasn\'t specified for this location. Contact (215) 686-VOTE to ask about accessibility before you go.',
+      },
+      es: {
+        skipToMap: 'Ir al mapa',
+        subtitle: 'Accesibilidad de Lugares de Votación en Filadelfia',
+        searchLabel: 'Encuentra tu lugar de votación',
+        searchPlaceholder: 'Ingresa tu dirección en Filadelfia',
+        searchBtn: 'Buscar',
+        searchHint: 'Encontraremos los lugares de votación más cercanos y mostraremos su accesibilidad. Para tu ubicación oficial, visita <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.',
+        statsLoading: 'Cargando datos de lugares de votación...',
+        mapLoading: 'Cargando más de 1,700 lugares de votación...',
+        close: 'Cerrar',
+        rightsHeading: 'Tus Derechos como Votante Discapacitado en Filadelfia',
+        rightsAccessTitle: 'Máquinas de Votación Accesibles',
+        rightsAccessText: 'Cada lugar de votación en Pensilvania debe tener al menos un sistema de votación accesible. Puedes pedir ayuda a los trabajadores electorales.',
+        rightsAssistTitle: 'Trae a Alguien para Ayudarte',
+        rightsAssistText: 'Si necesitas ayuda para votar debido a una discapacidad, puedes traer a una persona de tu elección para asistirte en la cabina de votación (con algunas restricciones).',
+        rightsAltTitle: 'Opciones de Boleta Alternativa',
+        rightsAltText: 'Si tu lugar de votación no es totalmente accesible, puedes votar por correo, solicitar una Boleta Alternativa, o votar en el Ayuntamiento Sala 142 el Día de Elecciones. Contacta <a href="tel:2156868683">(215) 686-VOTE</a> o visita <a href="https://vote.phila.gov/voting/vote-by-mail/" target="_blank" rel="noopener">vote.phila.gov</a>.',
+        builtBy: 'Construido para',
+        buildingStatus: 'Accesibilidad del Edificio',
+        parkingStatus: 'Accesibilidad del Estacionamiento',
+        nearestLabel: 'Más cercano a tu búsqueda',
+        noResults: 'No se encontraron resultados. Intenta con una dirección en Filadelfia.',
+        statsTotal: 'lugares de votación en total',
+        statsAccessible: 'edificio accesible',
+        statsWithParking: 'con estacionamiento accesible',
+        ward: 'Distrito',
+        division: 'División',
+        moreDetail: 'Ver detalles y derechos',
+        whatThisMeans: 'Lo que esto significa para ti:',
+        accessibleExplain: 'Este edificio cumple con los estándares de accesibilidad. Deberías poder entrar y navegar el lugar de votación de forma independiente.',
+        partialExplain: 'Este edificio puede tener algunas características de accesibilidad pero podría no cumplir con todos los estándares ADA. Contacta (215) 686-VOTE antes del Día de Elecciones para confirmar.',
+        limitedExplain: 'Este edificio tiene barreras de accesibilidad conocidas. Tienes derecho a votar por Boleta Alternativa o en el Ayuntamiento. Contacta (215) 686-VOTE para opciones.',
+        unknownExplain: 'El estado de accesibilidad no fue especificado para esta ubicación. Contacta (215) 686-VOTE para preguntar sobre accesibilidad antes de ir.',
+      }
+    };
+
+    function t(key) {
+      return STRINGS[currentLang][key] || STRINGS.en[key] || key;
+    }
+
+    // ---- INIT ----
+    function init() {
+      initMap();
+      loadPollingPlaces();
+      bindEvents();
+    }
+
+    function initMap() {
+      map = L.map('map', {
+        center: [39.9526, -75.1652],
+        zoom: 12,
+        zoomControl: true,
+        attributionControl: true
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      }).addTo(map);
+    }
+
+    // ---- DATA LOADING ----
+    function loadPollingPlaces() {
+      const query = encodeURIComponent('SELECT *, ST_Y(the_geom) AS lat, ST_X(the_geom) AS lng FROM polling_places');
+      const url = `https://phl.carto.com/api/v2/sql?q=${query}&format=json`;
+
+      fetch(url)
+        .then(r => {
+          if (!r.ok) throw new Error('API request failed');
+          return r.json();
+        })
+        .then(data => {
+          allPlaces = data.rows.filter(p => p.lat && p.lng);
+          renderMarkers();
+          renderStats();
+          document.getElementById('loadingOverlay').classList.add('hidden');
+        })
+        .catch(err => {
+          console.error('Failed to load polling places:', err);
+          document.getElementById('loadingOverlay').innerHTML =
+            '<span style="color:var(--barrier-red); text-align:center; padding:1rem;">' +
+            'Unable to load polling place data. Please refresh the page or check your connection.' +
+            '</span>';
+        });
+    }
+
+    // ---- RENDERING ----
+    function getAccessLevel(code) {
+      if (!code) return 'unknown';
+      const upper = code.toUpperCase().trim();
+      if (ACCESS_CODES[upper]) return ACCESS_CODES[upper].level;
+      // Heuristic fallback: if code contains 'F', treat as accessible
+      if (upper.includes('F')) return 'accessible';
+      return 'unknown';
+    }
+
+    function getAccessLabel(code) {
+      if (!code) return currentLang === 'es' ? 'No especificado' : 'Not specified';
+      const upper = code.toUpperCase().trim();
+      if (ACCESS_CODES[upper]) {
+        return ACCESS_CODES[upper][currentLang] || ACCESS_CODES[upper].en;
+      }
+      return currentLang === 'es' ? `Código: ${upper}` : `Code: ${upper}`;
+    }
+
+    function getParkingLabel(code) {
+      if (!code) return currentLang === 'es' ? 'No especificado' : 'Not specified';
+      const upper = code.toUpperCase().trim();
+      if (PARKING_CODES[upper]) {
+        return PARKING_CODES[upper][currentLang] || PARKING_CODES[upper].en;
+      }
+      return currentLang === 'es' ? `Código: ${upper}` : `Code: ${upper}`;
+    }
+
+    function renderMarkers() {
+      // Clear existing markers
+      markers.forEach(m => map.removeLayer(m));
+      markers = [];
+
+      allPlaces.forEach(place => {
+        const level = getAccessLevel(place.accessibility_code);
+        const color = LEVEL_COLORS[level];
+
+        const marker = L.circleMarker([place.lat, place.lng], {
+          radius: 5,
+          fillColor: color,
+          color: '#fff',
+          weight: 1,
+          opacity: 0.9,
+          fillOpacity: 0.85
+        });
+
+        marker.bindPopup(() => createPopupContent(place));
+        marker.placeData = place;
+        marker.addTo(map);
+        markers.push(marker);
+      });
+    }
+
+    function createPopupContent(place) {
+      const level = getAccessLevel(place.accessibility_code);
+      const accessLabel = getAccessLabel(place.accessibility_code);
+      const parkingLabel = getParkingLabel(place.parking_code);
+
+      const bgColors = {
+        accessible: 'var(--accessible-green-bg)',
+        partial: 'var(--caution-amber-bg)',
+        limited: 'var(--barrier-red-bg)',
+        unknown: 'var(--unknown-gray-bg)'
+      };
+
+      const textColors = {
+        accessible: 'var(--accessible-green)',
+        partial: 'var(--caution-amber)',
+        limited: 'var(--barrier-red)',
+        unknown: 'var(--unknown-gray)'
+      };
+
+      const name = titleCase(place.placename || 'Unknown');
+      const addr = titleCase(place.street_address || '');
+      const ward = place.ward || '?';
+      const div = place.division || '?';
+
+      return `
+        <div class="popup-name">${name}</div>
+        <div class="popup-address">${addr}, ${place.zip_code || ''}</div>
+        <div class="popup-status" style="background:${bgColors[level]}; color:${textColors[level]}">
+          ${accessLabel}
+        </div>
+        <div class="popup-parking">${t('parkingStatus')}: ${parkingLabel}</div>
+        <div class="popup-ward">${t('ward')} ${ward}, ${t('division')} ${div}</div>
+        <button class="popup-detail-link" onclick="window.BallotGap.showDetail('${place.ward}-${place.division}')">${t('moreDetail')}</button>
+      `;
+    }
+
+    function renderStats() {
+      if (!allPlaces.length) return;
+
+      const total = allPlaces.length;
+      let accessibleCount = 0;
+      let parkingCount = 0;
+
+      allPlaces.forEach(p => {
+        const level = getAccessLevel(p.accessibility_code);
+        if (level === 'accessible') accessibleCount++;
+        const pc = (p.parking_code || '').toUpperCase().trim();
+        if (pc === 'H') parkingCount++;
+      });
+
+      const pctAccessible = Math.round((accessibleCount / total) * 100);
+      const pctParking = Math.round((parkingCount / total) * 100);
+
+      const bar = document.getElementById('statsBar');
+      bar.innerHTML = `
+        <span class="stat-chip accessible">
+          <span class="dot" aria-hidden="true"></span>
+          ${accessibleCount} ${t('statsAccessible')} (${pctAccessible}%)
+        </span>
+        <span class="stat-chip partial">
+          <span class="dot" aria-hidden="true"></span>
+          ${parkingCount} ${t('statsWithParking')} (${pctParking}%)
+        </span>
+        <span style="font-size:0.82rem; color:var(--text-muted);">
+          ${total.toLocaleString()} ${t('statsTotal')}
+        </span>
+      `;
+    }
+
+    // ---- SEARCH ----
+    function handleSearch() {
+      const input = document.getElementById('addressInput').value.trim();
+      if (!input) return;
+
+      const query = encodeURIComponent(input + ', Philadelphia, PA');
+      const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&limit=1&countrycodes=us`;
+
+      document.getElementById('searchBtn').textContent = '...';
+
+      fetch(url, {
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(r => r.json())
+        .then(results => {
+          document.getElementById('searchBtn').textContent = t('searchBtn');
+
+          if (!results.length) {
+            alert(t('noResults'));
+            return;
+          }
+
+          const loc = results[0];
+          const userLat = parseFloat(loc.lat);
+          const userLng = parseFloat(loc.lon);
+
+          // Remove previous search marker
+          if (searchMarker) map.removeLayer(searchMarker);
+
+          // Add search location marker
+          searchMarker = L.marker([userLat, userLng], {
+            icon: L.divIcon({
+              className: '',
+              html: '<div style="width:14px;height:14px;background:var(--civic-blue);border:3px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4);"></div>',
+              iconSize: [14, 14],
+              iconAnchor: [7, 7]
+            })
+          }).addTo(map);
+
+          searchMarker.bindPopup(`<div style="font-family:var(--font);font-size:0.85rem;font-weight:600;">${currentLang === 'es' ? 'Tu ubicación' : 'Your location'}</div>`);
+
+          // Find nearest polling places
+          const sorted = allPlaces.map(p => {
+            const dist = haversine(userLat, userLng, p.lat, p.lng);
+            return { ...p, distance: dist };
+          }).sort((a, b) => a.distance - b.distance);
+
+          const nearest = sorted.slice(0, 5);
+
+          // Zoom to area showing user + nearest places
+          const bounds = L.latLngBounds([[userLat, userLng]]);
+          nearest.forEach(p => bounds.extend([p.lat, p.lng]));
+          map.fitBounds(bounds, { padding: [50, 50], maxZoom: 15 });
+
+          // Open popup on nearest
+          const nearestMarker = markers.find(m =>
+            m.placeData &&
+            m.placeData.ward === nearest[0].ward &&
+            m.placeData.division === nearest[0].division
+          );
+
+          if (nearestMarker) {
+            nearestMarker.setRadius(9);
+            nearestMarker.openPopup();
+            // Reset size after a moment
+            setTimeout(() => nearestMarker.setRadius(5), 5000);
+          }
+
+          // Show detail for nearest
+          showDetail(nearest[0].ward + '-' + nearest[0].division, true);
+        })
+        .catch(err => {
+          console.error('Geocoding failed:', err);
+          document.getElementById('searchBtn').textContent = t('searchBtn');
+          alert(t('noResults'));
+        });
+    }
+
+    // ---- DETAIL PANEL ----
+    function showDetail(wardDiv, isNearest) {
+      const [ward, division] = wardDiv.split('-');
+      const place = allPlaces.find(p =>
+        String(p.ward) === String(ward) &&
+        String(p.division) === String(division)
+      );
+
+      if (!place) return;
+
+      const panel = document.getElementById('detailPanel');
+      const level = getAccessLevel(place.accessibility_code);
+      const accessLabel = getAccessLabel(place.accessibility_code);
+      const parkingLabel = getParkingLabel(place.parking_code);
+
+      document.getElementById('detailName').textContent =
+        (isNearest ? '📍 ' : '') + titleCase(place.placename || 'Unknown');
+      document.getElementById('detailAddress').textContent =
+        titleCase(place.street_address || '') + ', Philadelphia, PA ' + (place.zip_code || '');
+      document.getElementById('detailWard').textContent =
+        `${t('ward')} ${place.ward}, ${t('division')} ${place.division}`;
+
+      const cardClass = {
+        accessible: 'card-accessible',
+        partial: 'card-partial',
+        limited: 'card-limited',
+        unknown: 'card-unknown'
+      }[level];
+
+      const explainKey = {
+        accessible: 'accessibleExplain',
+        partial: 'partialExplain',
+        limited: 'limitedExplain',
+        unknown: 'unknownExplain'
+      }[level];
+
+      document.getElementById('detailGrid').innerHTML = `
+        <div class="detail-card ${cardClass}">
+          <div class="detail-card-label">${t('buildingStatus')}</div>
+          <div class="detail-card-text">${accessLabel}</div>
+          <div class="detail-card-text" style="margin-top:0.5rem; font-size:0.85rem;">
+            <strong>${t('whatThisMeans')}</strong> ${t(explainKey)}
+          </div>
+        </div>
+        <div class="detail-card card-unknown">
+          <div class="detail-card-label">${t('parkingStatus')}</div>
+          <div class="detail-card-text">${parkingLabel}</div>
+        </div>
+      `;
+
+      panel.classList.add('visible');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // ---- LANGUAGE TOGGLE ----
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'es' : 'en';
+      const btn = document.getElementById('langToggle');
+      btn.textContent = currentLang === 'en' ? 'Español' : 'English';
+      btn.setAttribute('aria-label',
+        currentLang === 'en' ? 'Switch language to Spanish' : 'Cambiar idioma a inglés'
+      );
+
+      // Update all data-i18n elements
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const str = t(key);
+        if (str) el.innerHTML = str;
+      });
+
+      // Update placeholder
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const str = t(key);
+        if (str) el.setAttribute('placeholder', str);
+      });
+
+      // Re-render stats and markers with new language
+      renderStats();
+      renderMarkers();
+    }
+
+    // ---- EVENTS ----
+    function bindEvents() {
+      document.getElementById('searchBtn').addEventListener('click', handleSearch);
+      document.getElementById('addressInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleSearch();
+      });
+      document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+      document.getElementById('detailClose').addEventListener('click', () => {
+        document.getElementById('detailPanel').classList.remove('visible');
+      });
+    }
+
+    // ---- UTILITIES ----
+    function haversine(lat1, lng1, lat2, lng2) {
+      const R = 3959; // miles
+      const dLat = toRad(lat2 - lat1);
+      const dLng = toRad(lng2 - lng1);
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLng/2) * Math.sin(dLng/2);
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    }
+
+    function toRad(deg) { return deg * Math.PI / 180; }
+
+    function titleCase(str) {
+      return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    // ---- PUBLIC API (for popup onclick) ----
+    window.BallotGap = { showDetail };
+
+    // ---- GO ----
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+  </script>
+</body>
+</html>
