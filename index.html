@@ -11,12 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#F5F5F0;--text:#1A1A1A;--text-muted:#555;--civic-blue:#003366;--civic-blue-light:#0A4D8C;
-  --philly-gold:#FFD600;--philly-gold-dark:#C7A600;
-  --full-green:#1B5E20;--full-green-bg:#E8F5E9;--accessible-green:#2E7D32;--accessible-green-bg:#E8F5E9;
-  --caution-amber:#E65100;--caution-amber-bg:#FFF3E0;--barrier-red:#B71C1C;--barrier-red-bg:#FFEBEE;
-  --unknown-gray:#616161;--unknown-gray-bg:#F5F5F5;--white:#FFFFFF;--border:#D0D0D0;--focus-ring:#1565C0;
-  --font:'Public Sans',system-ui,-apple-system,sans-serif;
+--bg:#F5F5F0;--text:#1A1A1A;--text-muted:#555;--civic-blue:#003366;--civic-blue-light:#0A4D8C;
+--philly-gold:#FFD600;--philly-gold-dark:#C7A600;
+--full-green:#1B5E20;--full-green-bg:#E8F5E9;--accessible-green:#2E7D32;--accessible-green-bg:#E8F5E9;
+--caution-amber:#E65100;--caution-amber-bg:#FFF3E0;--barrier-red:#B71C1C;--barrier-red-bg:#FFEBEE;
+--unknown-gray:#616161;--unknown-gray-bg:#F5F5F5;--white:#FFFFFF;--border:#D0D0D0;--focus-ring:#1565C0;
+--font:'Public Sans',system-ui,-apple-system,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;scroll-behavior:smooth}
@@ -25,7 +25,6 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .skip-link:focus{top:0}
 *:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
 
-/* Header with gold accent */
 header{background:var(--civic-blue);color:var(--white);padding:1rem 1.25rem;border-bottom:3px solid var(--philly-gold)}
 .header-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
 .site-title{font-size:1.35rem;font-weight:800;letter-spacing:-.01em;line-height:1.2}
@@ -35,7 +34,6 @@ header{background:var(--civic-blue);color:var(--white);padding:1rem 1.25rem;bord
 .lang-toggle:hover,.lang-toggle:focus-visible,.share-btn:hover,.share-btn:focus-visible{background:rgba(255,255,255,.15);border-color:var(--white)}
 .share-btn.copied{background:var(--accessible-green);border-color:var(--accessible-green)}
 
-/* HERO STAT BANNER */
 .hero-banner{background:var(--civic-blue);color:var(--white);padding:1.5rem 1.25rem .5rem;text-align:center;display:none}
 .hero-inner{max-width:1200px;margin:0 auto}
 .hero-number{font-size:4.5rem;font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--philly-gold)}
@@ -50,10 +48,12 @@ header{background:var(--civic-blue);color:var(--white);padding:1rem 1.25rem;bord
 .search-input::placeholder{color:#999}
 .search-btn{background:var(--civic-blue);color:var(--white);border:none;padding:.6rem 1.25rem;border-radius:4px;font-family:var(--font);font-size:.95rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .15s}
 .search-btn:hover,.search-btn:focus-visible{background:var(--civic-blue-light)}
+.geo-btn{background:var(--white);border:1.5px solid var(--border);padding:.6rem .75rem;border-radius:4px;font-size:1.1rem;cursor:pointer;line-height:1;transition:border-color .15s,background .15s;flex-shrink:0}
+.geo-btn:hover,.geo-btn:focus-visible{border-color:var(--civic-blue);background:#E3F2FD}
+.geo-btn.locating{opacity:.6;cursor:wait}
 .search-hint{font-size:.8rem;color:var(--text-muted);margin-top:.35rem}
 .search-hint a{color:var(--civic-blue)}
 
-/* Stats bar */
 .stats-bar{background:var(--white);border-bottom:1px solid var(--border);padding:.6rem 1.25rem}
 .stats-inner{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
 .stat-chip{display:inline-flex;align-items:center;gap:.3rem;font-size:.78rem;font-weight:600;padding:.2rem .5rem;border-radius:4px}
@@ -65,7 +65,6 @@ header{background:var(--civic-blue);color:var(--white);padding:1rem 1.25rem;bord
 .stats-loading{font-size:.85rem;color:var(--text-muted);font-style:italic}
 .stats-total{font-size:.78rem;color:var(--text-muted)}
 
-/* Filter bar */
 .filter-bar{background:var(--bg);border-bottom:1px solid var(--border);padding:.5rem 1.25rem;display:none}
 .filter-inner{max-width:1200px;margin:0 auto;display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
 .filter-label{font-size:.8rem;font-weight:600;color:var(--text-muted);margin-right:.25rem}
@@ -74,7 +73,6 @@ header{background:var(--civic-blue);color:var(--white);padding:1rem 1.25rem;bord
 .filter-btn.active{background:var(--civic-blue);color:var(--white);border-color:var(--civic-blue)}
 .filter-btn .fdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:.3rem;vertical-align:middle}
 
-/* Ward scoreboard */
 .ward-bar{background:var(--white);border-bottom:1px solid var(--border);padding:.5rem 1.25rem;display:none}
 .ward-inner{max-width:1200px;margin:0 auto;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
 .ward-label{font-size:.82rem;font-weight:600;color:var(--text-muted)}
@@ -83,23 +81,39 @@ header{background:var(--civic-blue);color:var(--white);padding:1rem 1.25rem;bord
 .ward-bar-visual{display:flex;height:14px;border-radius:7px;overflow:hidden;width:180px;flex-shrink:0}
 .ward-bar-seg{height:100%;transition:width .3s}
 
-/* Map */
+/* Council district bar */
+.district-bar{background:var(--bg);border-bottom:1px solid var(--border);padding:.5rem 1.25rem;display:none}
+.district-inner{max-width:1200px;margin:0 auto;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.district-label{font-size:.82rem;font-weight:600;color:var(--text-muted)}
+.district-select{font-family:var(--font);font-size:.85rem;padding:.3rem .5rem;border:1.5px solid var(--border);border-radius:4px;background:var(--white);color:var(--text);cursor:pointer}
+.district-result{font-size:.82rem;line-height:1.5;display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+
 .map-container{flex:1;min-height:420px;position:relative}
 #map{width:100%;height:100%;min-height:420px;z-index:1}
-.map-legend{position:absolute;bottom:24px;left:12px;z-index:1000;background:rgba(20,20,30,.88);border-radius:6px;padding:.6rem .75rem;font-size:.76rem;line-height:1.7;box-shadow:0 1px 5px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.15);max-width:210px;color:rgba(255,255,255,.9)}
+.map-legend{position:absolute;bottom:24px;left:12px;z-index:1000;background:rgba(20,20,30,.88);border-radius:6px;padding:.6rem .75rem;font-size:.76rem;line-height:1.7;box-shadow:0 1px 5px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.15);max-width:220px;color:rgba(255,255,255,.9)}
 .map-legend-title{font-weight:700;font-size:.8rem;margin-bottom:.25rem;color:var(--white)}
 .legend-row{display:flex;align-items:center;gap:.4rem}
+.legend-shape{flex-shrink:0}
 .legend-dot{width:11px;height:11px;border-radius:50%;border:1px solid rgba(255,255,255,.2);flex-shrink:0}
+
+/* Marker styles */
+.bg-marker{background:none!important;border:none!important}
+.bg-marker svg{display:block}
+.bg-highlight svg{filter:drop-shadow(0 0 4px #FFD600) drop-shadow(0 0 10px #FFD600)}
 
 /* Pulse animation for fully accessible markers */
 @keyframes pulse-ring{
-  0%{transform:scale(1);opacity:.6}
-  100%{transform:scale(2.2);opacity:0}
+0%{box-shadow:0 0 0 0 rgba(255,214,0,.5)}
+100%{box-shadow:0 0 0 8px rgba(255,214,0,0)}
 }
-.pulse-marker{position:relative}
-.pulse-marker::after{content:'';position:absolute;top:50%;left:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--philly-gold);animation:pulse-ring 2s ease-out infinite;pointer-events:none}
+.bg-pulse{animation:pulse-ring 2s ease-out infinite;border-radius:50%}
 
-/* Detail panel */
+/* Reduced motion: kill continuous animations */
+@media(prefers-reduced-motion:reduce){
+.bg-pulse{animation:none}
+*{transition-duration:0.01ms!important;animation-duration:0.01ms!important;animation-iteration-count:1!important}
+}
+
 .detail-panel{background:var(--white);border-top:3px solid var(--philly-gold);padding:1.25rem;display:none}
 .detail-panel.visible{display:block}
 .detail-inner{max-width:1200px;margin:0 auto}
@@ -123,7 +137,7 @@ header{background:var(--civic-blue);color:var(--white);padding:1rem 1.25rem;bord
 .nearest-alt-text{font-size:.85rem;line-height:1.5}
 .nearest-alt-link{display:inline-block;margin-top:.4rem;font-size:.82rem;color:var(--civic-blue);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:var(--font);padding:0}
 .detail-actions{margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap}
-.detail-action-btn{background:var(--civic-blue);color:var(--white);border:none;padding:.5rem 1rem;border-radius:4px;font-family:var(--font);font-size:.85rem;font-weight:600;cursor:pointer;transition:background .15s}
+.detail-action-btn{background:var(--civic-blue);color:var(--white);border:none;padding:.5rem 1rem;border-radius:4px;font-family:var(--font);font-size:.85rem;font-weight:600;cursor:pointer;transition:background .15s;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
 .detail-action-btn:hover{background:var(--civic-blue-light)}
 
 .rights-section{background:var(--white);border-top:1px solid var(--border);padding:1.25rem}
@@ -146,19 +160,7 @@ footer a{color:var(--white)}footer strong{color:var(--white)}
 .popup-detail-link{display:inline-block;margin-top:.5rem;font-size:.82rem;color:var(--civic-blue);cursor:pointer;text-decoration:underline;background:none;border:none;font-family:var(--font);padding:0}
 .loading-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(15,15,25,.85);display:flex;align-items:center;justify-content:center;z-index:1000;font-weight:600;color:rgba(255,255,255,.8)}
 .loading-overlay.hidden{display:none}
-@media(max-width:600px){
-  .site-title{font-size:1.15rem}.search-row{flex-direction:column}.search-btn{width:100%;text-align:center}
-  .stats-inner{gap:.35rem}.stat-chip{font-size:.7rem;padding:.15rem .35rem}
-  .map-container{min-height:350px}#map{min-height:350px}
-  .map-legend{font-size:.7rem;padding:.5rem .6rem;bottom:16px;left:8px}
-  .filter-btn{font-size:.72rem;padding:.2rem .5rem}
-  .hero-number{font-size:3rem}.hero-label{font-size:.95rem}
-  .ward-bar-visual{width:120px}
-}
-@media print{header,.search-section,.stats-bar,.filter-bar,.ward-bar,.hero-banner,.map-container,footer{display:none}.detail-panel,.rights-section{display:block!important;border:none}}
-#cardCanvas{display:none}
 
-/* Income overlay */
 .income-toggle{background:var(--white);border:1.5px solid var(--border);border-radius:20px;padding:.25rem .65rem;font-family:var(--font);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;color:var(--text-muted);margin-left:.5rem}
 .income-toggle:hover{border-color:#0277BD;color:#0277BD}
 .income-toggle.active{background:#0277BD;color:var(--white);border-color:#0277BD}
@@ -167,7 +169,6 @@ footer a{color:var(--white)}footer strong{color:var(--white)}
 .il-row{display:flex;align-items:center;gap:.35rem}
 .il-swatch{width:18px;height:10px;border-radius:2px;flex-shrink:0}
 
-/* Budget context */
 .budget-section{background:var(--civic-blue);color:var(--white);padding:1.25rem;border-top:3px solid var(--philly-gold)}
 .budget-inner{max-width:1200px;margin:0 auto}
 .budget-heading{font-size:1.05rem;font-weight:700;margin-bottom:.75rem;color:var(--philly-gold)}
@@ -179,620 +180,826 @@ footer a{color:var(--white)}footer strong{color:var(--white)}
 .budget-desc{font-size:.82rem;line-height:1.4;opacity:.9}
 .budget-source{font-size:.72rem;opacity:.6;margin-top:.6rem}
 
-/* SEPTA card in detail panel */
 .septa-card{margin-top:.75rem;padding:.75rem;background:#E3F2FD;border-left:4px solid #0277BD;border-radius:6px}
 .septa-card-title{font-weight:700;font-size:.88rem;color:#0277BD;margin-bottom:.25rem}
 .septa-card-text{font-size:.82rem;line-height:1.4;color:var(--text)}
 .septa-card a{color:#0277BD;text-decoration:underline}
 
-/* Neighborhood context */
 .nbhood-card{margin-top:.75rem;padding:.75rem;background:#FFF8E1;border-left:4px solid var(--philly-gold-dark);border-radius:6px}
 .nbhood-card-title{font-weight:700;font-size:.88rem;color:var(--philly-gold-dark);margin-bottom:.25rem}
 .nbhood-card-text{font-size:.82rem;line-height:1.4;color:var(--text)}
 
+/* District detail card */
+.district-card{margin-top:.75rem;padding:.75rem;background:#EDE7F6;border-left:4px solid #5E35B1;border-radius:6px}
+.district-card-title{font-weight:700;font-size:.88rem;color:#5E35B1;margin-bottom:.25rem}
+.district-card-text{font-size:.82rem;line-height:1.4;color:var(--text)}
+
+@media(max-width:600px){
+.site-title{font-size:1.15rem}.search-row{flex-direction:row;flex-wrap:wrap}.search-input{flex:1 1 100%}.search-btn,.geo-btn{flex:1 1 auto}
+.stats-inner{gap:.35rem}.stat-chip{font-size:.7rem;padding:.15rem .35rem}
+.map-container{min-height:350px}#map{min-height:350px}
+.map-legend{font-size:.7rem;padding:.5rem .6rem;bottom:16px;left:8px}
+.filter-btn{font-size:.72rem;padding:.2rem .5rem}
+.hero-number{font-size:3rem}.hero-label{font-size:.95rem}
+.ward-bar-visual{width:120px}
+}
+@media print{header,.search-section,.stats-bar,.filter-bar,.ward-bar,.district-bar,.hero-banner,.map-container,footer{display:none}.detail-panel,.rights-section{display:block!important;border:none}}
+#cardCanvas{display:none}
 </style>
 </head>
 <body>
-  <a class="skip-link" href="#map" data-i18n="skipToMap">Skip to map</a>
-  <header>
-    <div class="header-inner">
-      <div class="site-title" role="banner">BallotGap PHL<span data-i18n="subtitle">Philadelphia Polling Place Accessibility</span></div>
-      <div class="header-actions">
-        <button class="share-btn" id="shareBtn" aria-label="Share the gap" data-i18n="shareBtn">📋 Share the Gap</button>
-        <button class="lang-toggle" id="langToggle" aria-label="Switch language to Spanish">Español</button>
-      </div>
-    </div>
-  </header>
-  <!-- HERO STAT BANNER -->
-  <div class="hero-banner" id="heroBanner" role="region" aria-label="Key statistic">
-    <div class="hero-inner">
-      <div class="hero-number" id="heroNumber">—</div>
-      <div class="hero-label" id="heroLabel" data-i18n="heroLabel">of Philadelphia's polling places are fully accessible</div>
-      <div class="hero-sub" id="heroSub"></div>
-    </div>
-  </div>
-  <section class="search-section" role="search">
-    <div class="search-inner">
-      <label class="search-label" for="addressInput" data-i18n="searchLabel">Find your polling place</label>
-      <div class="search-row">
-        <input type="text" id="addressInput" class="search-input" placeholder="Enter your Philadelphia address" data-i18n-placeholder="searchPlaceholder" autocomplete="street-address" />
-        <button class="search-btn" id="searchBtn" data-i18n="searchBtn">Search</button>
-      </div>
-      <p class="search-hint" data-i18n="searchHint">We'll find the nearest polling places and show their accessibility status. For your official assigned location, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.</p>
-    </div>
-  </section>
-  <div class="stats-bar" role="region" aria-label="Accessibility statistics">
-    <div class="stats-inner" id="statsBar"><span class="stats-loading" data-i18n="statsLoading">Loading polling place data...</span></div>
-  </div>
-  <div class="filter-bar" id="filterBar">
-    <div class="filter-inner">
-      <span class="filter-label" data-i18n="filterLabel">Filter:</span>
-      <button class="filter-btn active" data-filter="all" data-i18n="filterAll">All</button>
-      <button class="filter-btn" data-filter="full"><span class="fdot" style="background:#1B5E20" aria-hidden="true"></span><span data-i18n="filterFull">Fully Accessible</span></button>
-      <button class="filter-btn" data-filter="accessible"><span class="fdot" style="background:#2E7D32" aria-hidden="true"></span><span data-i18n="filterAccessible">Building Accessible</span></button>
-      <button class="filter-btn" data-filter="partial"><span class="fdot" style="background:#E65100" aria-hidden="true"></span><span data-i18n="filterPartial">Marginal / Ramp</span></button>
-      <button class="filter-btn" data-filter="limited"><span class="fdot" style="background:#B71C1C" aria-hidden="true"></span><span data-i18n="filterLimited">Barriers</span></button>
-      <button class="income-toggle" id="incomeToggle" data-i18n="incomeToggle">💰 Income Overlay</button>
-    </div>
-  </div>
-  <!-- WARD SCOREBOARD -->
-  <div class="ward-bar" id="wardBar">
-    <div class="ward-inner">
-      <span class="ward-label" data-i18n="wardLabel">Ward Scoreboard:</span>
-      <select class="ward-select" id="wardSelect" aria-label="Select a ward"><option value="">Select a ward</option></select>
-      <div class="ward-result" id="wardResult"></div>
-    </div>
-  </div>
-  <main class="map-container" id="mapContainer">
-    <div id="map" role="application" aria-label="Map of Philadelphia polling places"></div>
-    <div class="loading-overlay" id="loadingOverlay"><span data-i18n="mapLoading">Loading 1,700+ polling places...</span></div>
-    <div class="map-legend" id="mapLegend" role="img" aria-label="Map legend" style="display:none">
-      <div class="map-legend-title" data-i18n="legendTitle">Accessibility Level</div>
-      <div class="legend-row"><span class="legend-dot" style="background:#1B5E20;box-shadow:0 0 6px #FFD600"></span> <span data-i18n="legendFull">Fully Accessible (F + Parking)</span></div>
-      <div class="legend-row"><span class="legend-dot" style="background:#2E7D32"></span> <span data-i18n="legendAccessible">Building Accessible (F, A)</span></div>
-      <div class="legend-row"><span class="legend-dot" style="background:#E65100"></span> <span data-i18n="legendPartial">Marginal / Ramp Only (M, R)</span></div>
-      <div class="legend-row"><span class="legend-dot" style="background:#B71C1C"></span> <span data-i18n="legendLimited">Barriers Present (B)</span></div>
-      <div class="legend-row"><span class="legend-dot" style="background:#616161"></span> <span data-i18n="legendUnknown">Unknown</span></div>
-    </div>
-    <!-- Income Legend -->
-    <div class="income-legend" id="incomeLegend">
-      <div class="income-legend-title" data-i18n="incomeLegendTitle">Median Household Income</div>
-      <div class="il-row"><span class="il-swatch" style="background:#B71C1C"></span> Under $40K</div>
-      <div class="il-row"><span class="il-swatch" style="background:#E65100"></span> $40K – $60K</div>
-      <div class="il-row"><span class="il-swatch" style="background:#F9A825"></span> $60K – $80K</div>
-      <div class="il-row"><span class="il-swatch" style="background:#2E7D32"></span> $80K – $100K</div>
-      <div class="il-row"><span class="il-swatch" style="background:#1B5E20"></span> Over $100K</div>
-      <div style="font-size:.68rem;opacity:.7;margin-top:.3rem">Source: ACS 2020-24 via Pew</div>
-    </div>
-  </main>
-  <aside class="detail-panel" id="detailPanel" role="complementary" aria-label="Polling place details" aria-live="polite">
-    <div class="detail-inner">
-      <div class="detail-header">
-        <div><div class="detail-name" id="detailName"></div><div class="detail-address" id="detailAddress"></div><div class="detail-ward" id="detailWard" style="font-size:.82rem;color:var(--text-muted);margin-top:.2rem"></div></div>
-        <button class="detail-close" id="detailClose" aria-label="Close details" data-i18n="close">Close</button>
-      </div>
-      <div class="detail-grid" id="detailGrid"></div>
-      <div id="septaCard"></div>
-      <div id="nbhoodCard"></div>
-      <div id="nearestAlt"></div>
-      <div class="detail-actions" id="detailActions" style="display:none">
-        <button class="detail-action-btn" id="downloadCardBtn" data-i18n="downloadCard">⬇ Download My Voting Card</button>
-      </div>
-    </div>
-  </aside>
-  <section class="rights-section" role="region" aria-label="Your voting rights">
-    <div class="rights-inner">
-      <h2 class="rights-heading" data-i18n="rightsHeading">Your Rights as a Disabled Voter in Philadelphia</h2>
-      <div class="rights-content">
-        <div class="rights-block"><strong data-i18n="rightsAccessTitle">Accessible Voting Machines</strong><span data-i18n="rightsAccessText">Every polling place in Pennsylvania must have at least one accessible voting system. You can ask poll workers for help using it.</span></div>
-        <div class="rights-block"><strong data-i18n="rightsAssistTitle">Bring Someone to Help</strong><span data-i18n="rightsAssistText">If you need help voting due to a disability, you can bring a person of your choice to assist you in the voting booth (with some restrictions on who).</span></div>
-        <div class="rights-block"><strong data-i18n="rightsAltTitle">Alternative Ballot Options</strong><span data-i18n="rightsAltText">If your polling place isn't fully accessible, you can vote by mail, request an Alternative Ballot, or vote at City Hall Room 142 on Election Day. Contact <a href="tel:2156868683">(215) 686-VOTE</a> or visit <a href="https://vote.phila.gov/voting/vote-by-mail/" target="_blank" rel="noopener">vote.phila.gov</a>.</span></div>
-      </div>
-    </div>
-  </section>
+<a class="skip-link" href="#map" data-i18n="skipToMap">Skip to map</a>
+<header>
+<div class="header-inner">
+<div class="site-title" role="banner">BallotGap PHL<span data-i18n="subtitle">Philadelphia Polling Place Accessibility</span></div>
+<div class="header-actions">
+<button class="share-btn" id="shareBtn" aria-label="Share the gap" data-i18n="shareBtn">📋 Share the Gap</button>
+<button class="lang-toggle" id="langToggle" aria-label="Switch language to Spanish">Español</button>
+</div>
+</div>
+</header>
+<div class="hero-banner" id="heroBanner" role="region" aria-label="Key statistic">
+<div class="hero-inner">
+<div class="hero-number" id="heroNumber">—</div>
+<div class="hero-label" id="heroLabel" data-i18n="heroLabel">of Philadelphia's polling places are fully accessible</div>
+<div class="hero-sub" id="heroSub"></div>
+</div>
+</div>
+<section class="search-section" role="search">
+<div class="search-inner">
+<label class="search-label" for="addressInput" data-i18n="searchLabel">Find your polling place</label>
+<div class="search-row">
+<input type="text" id="addressInput" class="search-input" placeholder="Enter your Philadelphia address" data-i18n-placeholder="searchPlaceholder" autocomplete="street-address" />
+<button class="search-btn" id="searchBtn" data-i18n="searchBtn">Search</button>
+<button class="geo-btn" id="geoBtn" aria-label="Use my current location" title="Use my current location">📍</button>
+</div>
+<p class="search-hint" data-i18n="searchHint">We'll find the nearest polling places and show their accessibility status. For your official assigned location, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.</p>
+</div>
+</section>
+<div class="stats-bar" role="region" aria-label="Accessibility statistics">
+<div class="stats-inner" id="statsBar"><span class="stats-loading" data-i18n="statsLoading">Loading polling place data...</span></div>
+</div>
+<div class="filter-bar" id="filterBar">
+<div class="filter-inner">
+<span class="filter-label" data-i18n="filterLabel">Filter:</span>
+<button class="filter-btn active" data-filter="all" data-i18n="filterAll">All</button>
+<button class="filter-btn" data-filter="full"><span class="fdot" style="background:#1B5E20" aria-hidden="true"></span><span data-i18n="filterFull">Fully Accessible</span></button>
+<button class="filter-btn" data-filter="accessible"><span class="fdot" style="background:#2E7D32" aria-hidden="true"></span><span data-i18n="filterAccessible">Building Accessible</span></button>
+<button class="filter-btn" data-filter="partial"><span class="fdot" style="background:#E65100" aria-hidden="true"></span><span data-i18n="filterPartial">Marginal / Ramp</span></button>
+<button class="filter-btn" data-filter="limited"><span class="fdot" style="background:#B71C1C" aria-hidden="true"></span><span data-i18n="filterLimited">Barriers</span></button>
+<button class="income-toggle" id="incomeToggle" data-i18n="incomeToggle">💰 Income Overlay</button>
+</div>
+</div>
+<div class="ward-bar" id="wardBar">
+<div class="ward-inner">
+<span class="ward-label" data-i18n="wardLabel">Ward Scoreboard:</span>
+<select class="ward-select" id="wardSelect" aria-label="Select a ward"><option value="">Select a ward</option></select>
+<div class="ward-result" id="wardResult"></div>
+</div>
+</div>
+<!-- Council District Scoreboard -->
+<div class="district-bar" id="districtBar">
+<div class="district-inner">
+<span class="district-label" data-i18n="districtLabel">Council District:</span>
+<select class="district-select" id="districtSelect" aria-label="Select a council district"><option value="">Select a district</option></select>
+<div class="district-result" id="districtResult"></div>
+</div>
+</div>
+<main class="map-container" id="mapContainer">
+<div id="map" role="application" aria-label="Map of Philadelphia polling places"></div>
+<div class="loading-overlay" id="loadingOverlay"><span data-i18n="mapLoading">Loading 1,700+ polling places...</span></div>
+<div class="map-legend" id="mapLegend" role="img" aria-label="Map legend" style="display:none">
+<div class="map-legend-title" data-i18n="legendTitle">Accessibility Level</div>
+<div class="legend-row"><svg class="legend-shape" width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#1B5E20" stroke="#FFD600" stroke-width="2"/></svg> <span data-i18n="legendFull">Fully Accessible (F + Parking)</span></div>
+<div class="legend-row"><svg class="legend-shape" width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4.5" fill="#2E7D32" stroke="rgba(255,255,255,.6)" stroke-width="1"/></svg> <span data-i18n="legendAccessible">Building Accessible (F, A)</span></div>
+<div class="legend-row"><svg class="legend-shape" width="14" height="14" aria-hidden="true"><rect x="3" y="3" width="8" height="8" fill="#E65100" stroke="rgba(255,255,255,.7)" stroke-width="1" transform="rotate(45 7 7)"/></svg> <span data-i18n="legendPartial">Marginal / Ramp Only (M, R)</span></div>
+<div class="legend-row"><svg class="legend-shape" width="12" height="12" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" fill="#B71C1C" stroke="rgba(255,255,255,.7)" stroke-width="1" rx="1"/></svg> <span data-i18n="legendLimited">Barriers Present (B)</span></div>
+<div class="legend-row"><svg class="legend-shape" width="12" height="12" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="#9E9E9E" stroke-width="2"/></svg> <span data-i18n="legendUnknown">Unknown</span></div>
+</div>
+<div class="income-legend" id="incomeLegend">
+<div class="income-legend-title" data-i18n="incomeLegendTitle">Median Household Income</div>
+<div class="il-row"><span class="il-swatch" style="background:#B71C1C"></span> Under $40K</div>
+<div class="il-row"><span class="il-swatch" style="background:#E65100"></span> $40K – $60K</div>
+<div class="il-row"><span class="il-swatch" style="background:#F9A825"></span> $60K – $80K</div>
+<div class="il-row"><span class="il-swatch" style="background:#2E7D32"></span> $80K – $100K</div>
+<div class="il-row"><span class="il-swatch" style="background:#1B5E20"></span> Over $100K</div>
+<div style="font-size:.68rem;opacity:.7;margin-top:.3rem">Source: ACS 2020-24 via Pew</div>
+</div>
+</main>
+<!-- Live region for screen reader search announcements -->
+<div id="srAnnounce" role="status" aria-live="polite" class="skip-link" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"></div>
+<aside class="detail-panel" id="detailPanel" role="complementary" aria-label="Polling place details" aria-live="polite">
+<div class="detail-inner">
+<div class="detail-header">
+<div><div class="detail-name" id="detailName"></div><div class="detail-address" id="detailAddress"></div><div class="detail-ward" id="detailWard" style="font-size:.82rem;color:var(--text-muted);margin-top:.2rem"></div></div>
+<button class="detail-close" id="detailClose" aria-label="Close details" data-i18n="close">Close</button>
+</div>
+<div class="detail-grid" id="detailGrid"></div>
+<div id="septaCard"></div>
+<div id="nbhoodCard"></div>
+<div id="districtCard"></div>
+<div id="nearestAlt"></div>
+<div class="detail-actions" id="detailActions" style="display:none">
+<button class="detail-action-btn" id="downloadCardBtn" data-i18n="downloadCard">⬇ Download My Voting Card</button>
+<a class="detail-action-btn" id="directionsBtn" href="#" target="_blank" rel="noopener" data-i18n="directionsBtn">🧭 Get Directions</a>
+</div>
+</div>
+</aside>
+<section class="rights-section" role="region" aria-label="Your voting rights">
+<div class="rights-inner">
+<h2 class="rights-heading" data-i18n="rightsHeading">Your Rights as a Disabled Voter in Philadelphia</h2>
+<div class="rights-content">
+<div class="rights-block"><strong data-i18n="rightsAccessTitle">Accessible Voting Machines</strong><span data-i18n="rightsAccessText">Every polling place in Pennsylvania must have at least one accessible voting system. You can ask poll workers for help using it.</span></div>
+<div class="rights-block"><strong data-i18n="rightsAssistTitle">Bring Someone to Help</strong><span data-i18n="rightsAssistText">If you need help voting due to a disability, you can bring a person of your choice to assist you in the voting booth (with some restrictions on who).</span></div>
+<div class="rights-block"><strong data-i18n="rightsAltTitle">Alternative Ballot Options</strong><span data-i18n="rightsAltText">If your polling place isn't fully accessible, you can vote by mail, request an Alternative Ballot, or vote at City Hall Room 142 on Election Day. Contact <a href="tel:2156868683">(215) 686-VOTE</a> or visit <a href="https://vote.phila.gov/voting/vote-by-mail/" target="_blank" rel="noopener">vote.phila.gov</a>.</span></div>
+</div>
+</div>
+</section>
+<section class="budget-section" role="region" aria-label="What your vote decides">
+<div class="budget-inner">
+<h2 class="budget-heading" data-i18n="budgetHeading">What Your Vote Decides: FY2027 Budget for Disabled Philadelphians</h2>
+<div class="budget-grid">
+<div class="budget-item"><div class="budget-amount">$170M</div><div class="budget-desc" data-i18n="budgetSepta">SEPTA investment — part of an $895M commitment to public transit, the system Disabled riders depend on.</div></div>
+<div class="budget-item"><div class="budget-amount">$22M</div><div class="budget-desc" data-i18n="budgetShelter">Expanding 1,000 shelter beds with wraparound services and increasing Hub of Hope hours.</div></div>
+<div class="budget-item"><div class="budget-amount">$10M</div><div class="budget-desc" data-i18n="budgetWorkforce">Workforce development through the City College for Municipal Employment — accessible career pathways.</div></div>
+<div class="budget-item"><div class="budget-amount">$2.2M</div><div class="budget-desc" data-i18n="budgetFinEmp">New Office of Financial Empowerment — free financial counseling and low-cost banking access.</div></div>
+<div class="budget-item"><div class="budget-amount">$34.7M</div><div class="budget-desc" data-i18n="budgetHousing">Housing investments including proactive rental inspection and Land Bank support.</div></div>
+<div class="budget-item"><div class="budget-amount">$91M</div><div class="budget-desc" data-i18n="budgetFederal">Federal Funding Reserve — set aside because federal cuts threaten the programs Philadelphians rely on most.</div></div>
+</div>
+<div class="budget-source" data-i18n="budgetSource">Source: City of Philadelphia FY2027 Proposed Operating Budget, March 2026. These are proposed allocations, not guarantees — which is why elections matter.</div>
+</div>
+</section>
+<footer>
+<div class="footer-inner">
+<strong>Data source:</strong> <a href="https://opendataphilly.org/datasets/polling-places/" target="_blank" rel="noopener">Philadelphia City Commissioners via OpenDataPhilly</a> (CARTO API, continuously updated).
+For your official assignment, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.
+<br><strong data-i18n="builtBy">Built for</strong> <a href="https://www.aapd.com/disability-voting-rights-week/" target="_blank" rel="noopener">Disability Voting Rights Week 2026</a>. Open source. No data collected. No cookies.
+</div>
+</footer>
+<canvas id="cardCanvas" width="1200" height="630"></canvas>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+(function(){
+'use strict';
+var allPlaces=[],map=null,markers=[],searchMarker=null,currentLang='en',activeFilter='all',currentDetailPlace=null,globalCounts={},wardData={},districtData={},districtMap={},hashUpdatePaused=false;
 
-  <!-- BUDGET CONTEXT: What Your Vote Decides -->
-  <section class="budget-section" role="region" aria-label="What your vote decides">
-    <div class="budget-inner">
-      <h2 class="budget-heading" data-i18n="budgetHeading">What Your Vote Decides: FY2027 Budget for Disabled Philadelphians</h2>
-      <div class="budget-grid">
-        <div class="budget-item">
-          <div class="budget-amount">$170M</div>
-          <div class="budget-desc" data-i18n="budgetSepta">SEPTA investment — part of an $895M commitment to public transit, the system Disabled riders depend on.</div>
-        </div>
-        <div class="budget-item">
-          <div class="budget-amount">$22M</div>
-          <div class="budget-desc" data-i18n="budgetShelter">Expanding 1,000 shelter beds with wraparound services and increasing Hub of Hope hours.</div>
-        </div>
-        <div class="budget-item">
-          <div class="budget-amount">$10M</div>
-          <div class="budget-desc" data-i18n="budgetWorkforce">Workforce development through the City College for Municipal Employment — accessible career pathways.</div>
-        </div>
-        <div class="budget-item">
-          <div class="budget-amount">$2.2M</div>
-          <div class="budget-desc" data-i18n="budgetFinEmp">New Office of Financial Empowerment — free financial counseling and low-cost banking access.</div>
-        </div>
-        <div class="budget-item">
-          <div class="budget-amount">$34.7M</div>
-          <div class="budget-desc" data-i18n="budgetHousing">Housing investments including proactive rental inspection and Land Bank support.</div>
-        </div>
-        <div class="budget-item">
-          <div class="budget-amount">$91M</div>
-          <div class="budget-desc" data-i18n="budgetFederal">Federal Funding Reserve — set aside because federal cuts threaten the programs Philadelphians rely on most.</div>
-        </div>
-      </div>
-      <div class="budget-source" data-i18n="budgetSource">Source: City of Philadelphia FY2027 Proposed Operating Budget, March 2026. These are proposed allocations, not guarantees — which is why elections matter.</div>
-    </div>
-  </section>
-  <footer>
-    <div class="footer-inner">
-      <strong>Data source:</strong> <a href="https://opendataphilly.org/datasets/polling-places/" target="_blank" rel="noopener">Philadelphia City Commissioners via OpenDataPhilly</a> (CARTO API, continuously updated).
-      For your official assignment, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.
-      <br><strong data-i18n="builtBy">Built for</strong> <a href="https://www.aapd.com/disability-voting-rights-week/" target="_blank" rel="noopener">Disability Voting Rights Week 2026</a>. Open source. No data collected. No cookies.
-    </div>
-  </footer>
-  <canvas id="cardCanvas" width="1200" height="630"></canvas>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script>
-  (function(){
-    'use strict';
-    var allPlaces=[],map=null,markers=[],searchMarker=null,currentLang='en',activeFilter='all',currentDetailPlace=null,globalCounts={},wardData={};
+var ACCESS_CODES={
+'F':{level:'accessible',en:'Building Accessible',es:'Edificio Accesible'},
+'A':{level:'accessible',en:'ADA Accessible',es:'Accesible según ADA'},
+'M':{level:'partial',en:'Meets Minimum Standards',es:'Cumple Estándares Mínimos'},
+'R':{level:'partial',en:'Ramp Access Only',es:'Acceso Solo por Rampa'},
+'B':{level:'limited',en:'Building Has Barriers',es:'El Edificio Tiene Barreras'}
+};
+var PARKING_CODES={
+'H':{en:'Accessible parking available',es:'Estacionamiento accesible disponible'},
+'L':{en:'Limited parking',es:'Estacionamiento limitado'},
+'N':{en:'No accessible parking',es:'Sin estacionamiento accesible'}
+};
+var LEVEL_COLORS={full:'#1B5E20',accessible:'#2E7D32',partial:'#E65100',limited:'#B71C1C',unknown:'#616161'};
 
-    var ACCESS_CODES={
-      'F':{level:'accessible',en:'Building Accessible',es:'Edificio Accesible'},
-      'A':{level:'accessible',en:'ADA Accessible',es:'Accesible según ADA'},
-      'M':{level:'partial',en:'Meets Minimum Standards',es:'Cumple Estándares Mínimos'},
-      'R':{level:'partial',en:'Ramp Access Only',es:'Acceso Solo por Rampa'},
-      'B':{level:'limited',en:'Building Has Barriers',es:'El Edificio Tiene Barreras'}
-    };
-    var PARKING_CODES={
-      'H':{en:'Accessible parking available',es:'Estacionamiento accesible disponible'},
-      'L':{en:'Limited parking',es:'Estacionamiento limitado'},
-      'N':{en:'No accessible parking',es:'Sin estacionamiento accesible'}
-    };
-    var LEVEL_COLORS={full:'#1B5E20',accessible:'#2E7D32',partial:'#E65100',limited:'#B71C1C',unknown:'#616161'};
+var ZIP_INCOME={'19106':121047,'19130':112037,'19118':109649,'19125':109554,'19147':105755,'19146':103059,'19123':102106,'19127':102106,'19102':102093,'19103':99644,'19154':95027,'19128':93173,'19119':92651,'19148':82605,'19129':80606,'19114':77708,'19137':76739,'19145':71965,'19115':70054,'19107':69105,'19116':67535,'19150':66936,'19122':63676,'19111':61138,'19152':59408,'19149':58496,'19138':57744,'19136':56687,'19153':55213,'19151':54634,'19120':54000,'19126':53176,'19144':53161,'19135':53138,'19131':48393,'19124':45314,'19134':44066,'19141':43998,'19143':43244,'19139':40947,'19104':38814,'19121':38516,'19142':38376,'19140':36226,'19132':32823,'19133':31034};
 
-    // ZIP code median household income (ACS 2020-24 via Pew Charitable Trusts)
-    var ZIP_INCOME={'19106':121047,'19130':112037,'19118':109649,'19125':109554,'19147':105755,'19146':103059,'19123':102106,'19127':102106,'19102':102093,'19103':99644,'19154':95027,'19128':93173,'19119':92651,'19148':82605,'19129':80606,'19114':77708,'19137':76739,'19145':71965,'19115':70054,'19107':69105,'19116':67535,'19150':66936,'19122':63676,'19111':61138,'19152':59408,'19149':58496,'19138':57744,'19136':56687,'19153':55213,'19151':54634,'19120':54000,'19126':53176,'19144':53161,'19135':53138,'19131':48393,'19124':45314,'19134':44066,'19141':43998,'19143':43244,'19139':40947,'19104':38814,'19121':38516,'19142':38376,'19140':36226,'19132':32823,'19133':31034};
+function getIncomeColor(zip){var inc=ZIP_INCOME[zip];if(!inc)return null;if(inc<40000)return'#B71C1C';if(inc<60000)return'#E65100';if(inc<80000)return'#F9A825';if(inc<100000)return'#2E7D32';return'#1B5E20'}
+function getIncomeLabel(zip){var inc=ZIP_INCOME[zip];if(!inc)return currentLang==='es'?'No disponible':'Not available';return'$'+inc.toLocaleString()}
 
-    function getIncomeColor(zip){
-      var inc=ZIP_INCOME[zip];if(!inc) return null;
-      if(inc<40000) return '#B71C1C';
-      if(inc<60000) return '#E65100';
-      if(inc<80000) return '#F9A825';
-      if(inc<100000) return '#2E7D32';
-      return '#1B5E20';
-    }
-    function getIncomeLabel(zip){
-      var inc=ZIP_INCOME[zip];if(!inc) return currentLang==='es'?'No disponible':'Not available';
-      return '$'+inc.toLocaleString();
-    }
+var SEPTA_STATIONS=[
+{n:'Fern Rock',lat:40.1208,lng:-75.1145},{n:'Olney',lat:40.0338,lng:-75.1207},
+{n:'Logan',lat:40.0228,lng:-75.1440},{n:'Wyoming',lat:40.0163,lng:-75.1484},
+{n:'Hunting Park',lat:40.0095,lng:-75.1497},{n:'Erie',lat:40.0037,lng:-75.1504},
+{n:'North Philadelphia',lat:39.9979,lng:-75.1516},{n:'Susquehanna-Dauphin',lat:39.9882,lng:-75.1561},
+{n:'Cecil B. Moore',lat:39.9810,lng:-75.1591},{n:'Girard',lat:39.9742,lng:-75.1614},
+{n:'Fairmount',lat:39.9681,lng:-75.1638},{n:'Spring Garden',lat:39.9619,lng:-75.1629},
+{n:'Race-Vine',lat:39.9569,lng:-75.1619},{n:'City Hall',lat:39.9527,lng:-75.1636},
+{n:'Walnut-Locust',lat:39.9483,lng:-75.1643},{n:'Lombard-South',lat:39.9423,lng:-75.1655},
+{n:'Ellsworth-Federal',lat:39.9387,lng:-75.1669},{n:'Tasker-Morris',lat:39.9310,lng:-75.1695},
+{n:'Snyder',lat:39.9226,lng:-75.1705},{n:'Oregon',lat:39.9159,lng:-75.1728},
+{n:'NRG',lat:39.9066,lng:-75.1730},
+{n:'46th St',lat:39.9583,lng:-75.2186},{n:'40th St',lat:39.9564,lng:-75.2066},
+{n:'34th St',lat:39.9568,lng:-75.1916},{n:'30th St',lat:39.9562,lng:-75.1819},
+{n:'15th St',lat:39.9524,lng:-75.1663},{n:'13th St',lat:39.9524,lng:-75.1613},
+{n:'11th St',lat:39.9524,lng:-75.1572},{n:'8th St',lat:39.9527,lng:-75.1514},
+{n:'5th St',lat:39.9527,lng:-75.1464},{n:'2nd St',lat:39.9524,lng:-75.1407},
+{n:'Spring Garden MFL',lat:39.9617,lng:-75.1387},{n:'Girard MFL',lat:39.9676,lng:-75.1360},
+{n:'Berks',lat:39.9735,lng:-75.1340},{n:'York-Dauphin',lat:39.9799,lng:-75.1316},
+{n:'Huntingdon',lat:39.9887,lng:-75.1265},{n:'Somerset',lat:39.9939,lng:-75.1244},
+{n:'Allegheny',lat:39.9990,lng:-75.1218},{n:'Tioga',lat:40.0043,lng:-75.1189},
+{n:'Erie-Torresdale',lat:40.0087,lng:-75.1130},{n:'Church',lat:40.0137,lng:-75.0988},
+{n:'Arrott',lat:40.0177,lng:-75.0903},{n:'Margaret-Orthodox',lat:40.0205,lng:-75.0798},
+{n:'Frankford',lat:40.0234,lng:-75.0795}
+];
 
-    // SEPTA Rapid Transit Stations (BSL + MFL within Philadelphia)
-    var SEPTA_STATIONS=[
-      {n:'Fern Rock',lat:40.1208,lng:-75.1145},{n:'Olney',lat:40.0338,lng:-75.1207},
-      {n:'Logan',lat:40.0228,lng:-75.1440},{n:'Wyoming',lat:40.0163,lng:-75.1484},
-      {n:'Hunting Park',lat:40.0095,lng:-75.1497},{n:'Erie',lat:40.0037,lng:-75.1504},
-      {n:'North Philadelphia',lat:39.9979,lng:-75.1516},{n:'Susquehanna-Dauphin',lat:39.9882,lng:-75.1561},
-      {n:'Cecil B. Moore',lat:39.9810,lng:-75.1591},{n:'Girard',lat:39.9742,lng:-75.1614},
-      {n:'Fairmount',lat:39.9681,lng:-75.1638},{n:'Spring Garden',lat:39.9619,lng:-75.1629},
-      {n:'Race-Vine',lat:39.9569,lng:-75.1619},{n:'City Hall',lat:39.9527,lng:-75.1636},
-      {n:'Walnut-Locust',lat:39.9483,lng:-75.1643},{n:'Lombard-South',lat:39.9423,lng:-75.1655},
-      {n:'Ellsworth-Federal',lat:39.9387,lng:-75.1669},{n:'Tasker-Morris',lat:39.9310,lng:-75.1695},
-      {n:'Snyder',lat:39.9226,lng:-75.1705},{n:'Oregon',lat:39.9159,lng:-75.1728},
-      {n:'NRG',lat:39.9066,lng:-75.1730},
-      {n:'46th St',lat:39.9583,lng:-75.2186},{n:'40th St',lat:39.9564,lng:-75.2066},
-      {n:'34th St',lat:39.9568,lng:-75.1916},{n:'30th St',lat:39.9562,lng:-75.1819},
-      {n:'15th St',lat:39.9524,lng:-75.1663},{n:'13th St',lat:39.9524,lng:-75.1613},
-      {n:'11th St',lat:39.9524,lng:-75.1572},{n:'8th St',lat:39.9527,lng:-75.1514},
-      {n:'5th St',lat:39.9527,lng:-75.1464},{n:'2nd St',lat:39.9524,lng:-75.1407},
-      {n:'Spring Garden MFL',lat:39.9617,lng:-75.1387},{n:'Girard MFL',lat:39.9676,lng:-75.1360},
-      {n:'Berks',lat:39.9735,lng:-75.1340},{n:'York-Dauphin',lat:39.9799,lng:-75.1316},
-      {n:'Huntingdon',lat:39.9887,lng:-75.1265},{n:'Somerset',lat:39.9939,lng:-75.1244},
-      {n:'Allegheny',lat:39.9990,lng:-75.1218},{n:'Tioga',lat:40.0043,lng:-75.1189},
-      {n:'Erie-Torresdale',lat:40.0087,lng:-75.1130},{n:'Church',lat:40.0137,lng:-75.0988},
-      {n:'Arrott',lat:40.0177,lng:-75.0903},{n:'Margaret-Orthodox',lat:40.0205,lng:-75.0798},
-      {n:'Frankford',lat:40.0234,lng:-75.0795}
-    ];
+var incomeLayerVisible=false,incomeCircles=[];
 
-    var incomeLayerVisible=false, incomeCircles=[];
+// ---- COLORBLIND-SAFE MARKER SVGs ----
+// Shapes: full=circle+gold, accessible=circle, partial=diamond, limited=square, unknown=hollow circle
+function getMarkerSVG(level){
+switch(level){
+case 'full':return '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#1B5E20" stroke="#FFD600" stroke-width="2.5"/></svg>';
+case 'accessible':return '<svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#2E7D32" stroke="rgba(255,255,255,0.7)" stroke-width="1"/></svg>';
+case 'partial':return '<svg width="14" height="14" viewBox="0 0 14 14"><rect x="3" y="3" width="8" height="8" fill="#E65100" stroke="rgba(255,255,255,0.8)" stroke-width="1" transform="rotate(45 7 7)"/></svg>';
+case 'limited':return '<svg width="12" height="12" viewBox="0 0 12 12"><rect x="1.5" y="1.5" width="9" height="9" fill="#B71C1C" stroke="rgba(255,255,255,0.8)" stroke-width="1" rx="1"/></svg>';
+default:return '<svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="4" fill="none" stroke="#9E9E9E" stroke-width="2"/></svg>';
+}
+}
+function getMarkerIcon(level){
+var size=level==='full'?[16,16]:(level==='partial'?[14,14]:[12,12]);
+var anchor=level==='full'?[8,8]:(level==='partial'?[7,7]:[6,6]);
+return L.divIcon({className:'bg-marker'+(level==='full'?' bg-pulse':''),html:getMarkerSVG(level),iconSize:size,iconAnchor:anchor});
+}
 
-    function getCompositeLevel(p){
-      var ac=(p.accessibility_code||'').toUpperCase().trim(),pc=(p.parking_code||'').toUpperCase().trim();
-      if(ac==='F'&&pc==='H') return 'full';
-      if(ACCESS_CODES[ac]) return ACCESS_CODES[ac].level;
-      return 'unknown';
-    }
-    function getCompositeLabel(p){
-      var ac=(p.accessibility_code||'').toUpperCase().trim(),pc=(p.parking_code||'').toUpperCase().trim();
-      if(ac==='F'&&pc==='H') return currentLang==='es'?'Totalmente Accesible (Edificio + Estacionamiento)':'Fully Accessible (Building + Parking)';
-      if(!ac) return currentLang==='es'?'No especificado':'Not specified';
-      if(ACCESS_CODES[ac]) return ACCESS_CODES[ac][currentLang]||ACCESS_CODES[ac].en;
-      return 'Code: '+ac;
-    }
-    function getParkingLabel(code){
-      if(!code) return currentLang==='es'?'No especificado':'Not specified';
-      var u=code.toUpperCase().trim();
-      if(PARKING_CODES[u]) return PARKING_CODES[u][currentLang]||PARKING_CODES[u].en;
-      return 'Code: '+u;
-    }
+function getCompositeLevel(p){
+var ac=(p.accessibility_code||'').toUpperCase().trim(),pc=(p.parking_code||'').toUpperCase().trim();
+if(ac==='F'&&pc==='H') return 'full';
+if(ACCESS_CODES[ac]) return ACCESS_CODES[ac].level;
+return 'unknown';
+}
+function getCompositeLabel(p){
+var ac=(p.accessibility_code||'').toUpperCase().trim(),pc=(p.parking_code||'').toUpperCase().trim();
+if(ac==='F'&&pc==='H') return currentLang==='es'?'Totalmente Accesible (Edificio + Estacionamiento)':'Fully Accessible (Building + Parking)';
+if(!ac) return currentLang==='es'?'No especificado':'Not specified';
+if(ACCESS_CODES[ac]) return ACCESS_CODES[ac][currentLang]||ACCESS_CODES[ac].en;
+return 'Code: '+ac;
+}
+function getParkingLabel(code){
+if(!code) return currentLang==='es'?'No especificado':'Not specified';
+var u=code.toUpperCase().trim();
+if(PARKING_CODES[u]) return PARKING_CODES[u][currentLang]||PARKING_CODES[u].en;
+return 'Code: '+u;
+}
 
-    var STRINGS={en:{
-      skipToMap:'Skip to map',subtitle:'Philadelphia Polling Place Accessibility',
-      searchLabel:'Find your polling place',searchPlaceholder:'Enter your Philadelphia address',searchBtn:'Search',
-      searchHint:'We\'ll find the nearest polling places and show their accessibility status. For your official assigned location, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.',
-      statsLoading:'Loading polling place data...',mapLoading:'Loading 1,700+ polling places...',close:'Close',
-      rightsHeading:'Your Rights as a Disabled Voter in Philadelphia',
-      rightsAccessTitle:'Accessible Voting Machines',rightsAccessText:'Every polling place in Pennsylvania must have at least one accessible voting system. You can ask poll workers for help using it.',
-      rightsAssistTitle:'Bring Someone to Help',rightsAssistText:'If you need help voting due to a disability, you can bring a person of your choice to assist you in the voting booth (with some restrictions on who).',
-      rightsAltTitle:'Alternative Ballot Options',rightsAltText:'If your polling place isn\'t fully accessible, you can vote by mail, request an Alternative Ballot, or vote at City Hall Room 142 on Election Day. Contact <a href="tel:2156868683">(215) 686-VOTE</a> or visit <a href="https://vote.phila.gov/voting/vote-by-mail/" target="_blank" rel="noopener">vote.phila.gov</a>.',
-      builtBy:'Built for',buildingStatus:'Building Accessibility',parkingStatus:'Parking Accessibility',
-      noResults:'No results found. Try a Philadelphia street address.',ward:'Ward',division:'Division',moreDetail:'See details & rights',whatThisMeans:'What this means for you:',
-      fullExplain:'This is one of the few Philadelphia polling places with both full building accessibility and accessible parking. You should be able to arrive, park, enter, and vote independently.',
-      accessibleExplain:'This building meets accessibility standards for entry and navigation. Check the parking status — accessible parking may not be available.',
-      partialExplain:'This building meets only minimum accessibility standards or has ramp-only access. Some barriers may exist. Contact (215) 686-VOTE before Election Day to confirm.',
-      limitedExplain:'This building has known accessibility barriers. You have the right to vote by Alternative Ballot, by mail, or at City Hall Room 142. Contact (215) 686-VOTE for options.',
-      unknownExplain:'Accessibility status wasn\'t specified for this location. Contact (215) 686-VOTE to ask about accessibility before you go.',
-      legendTitle:'Accessibility Level',legendFull:'Fully Accessible (F + Parking)',legendAccessible:'Building Accessible (F, A)',legendPartial:'Marginal / Ramp Only (M, R)',legendLimited:'Barriers Present (B)',legendUnknown:'Unknown',
-      statFull:'fully accessible',statAccessible:'building accessible',statPartial:'marginal / ramp',statLimited:'barriers',
-      filterLabel:'Filter:',filterAll:'All',filterFull:'Fully Accessible',filterAccessible:'Building Accessible',filterPartial:'Marginal / Ramp',filterLimited:'Barriers',
-      shareBtn:'\ud83d\udccb Share the Gap',shareCopied:'\u2705 Copied!',
-      heroLabel:'of Philadelphia\'s polling places are fully accessible',heroSub:'building accessible + accessible parking — the standard the city itself uses',
-      nearestAltTitle:'Nearest accessible alternative',nearestAltText:'The closest fully accessible polling place to this location is:',nearestAltMiles:'miles away',nearestAltShow:'Show on map',
-      downloadCard:'\u2b07 Download My Voting Card',
-      wardLabel:'Ward Scoreboard:',wardPlaces:'places',wardSelectPrompt:'Select a ward',
-      cardTitle:'MY VOTING PLAN',cardAccessLabel:'Accessibility:',cardParkingLabel:'Parking:',cardRights:'Know your rights: If this location isn\'t accessible, you can vote by mail, by Alternative Ballot, or at City Hall Room 142. Call (215) 686-VOTE.',cardDVRW:'Disability Voting Rights Week 2026',cardSite:'BallotGap PHL \u2022 meyeringn.github.io/ballotgap-phl'
-    },es:{
-      skipToMap:'Ir al mapa',subtitle:'Accesibilidad de Lugares de Votación en Filadelfia',
-      searchLabel:'Encuentra tu lugar de votación',searchPlaceholder:'Ingresa tu dirección en Filadelfia',searchBtn:'Buscar',
-      searchHint:'Encontraremos los lugares más cercanos y mostraremos su accesibilidad. Para tu ubicación oficial, visita <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.',
-      statsLoading:'Cargando datos...',mapLoading:'Cargando más de 1,700 lugares...',close:'Cerrar',
-      rightsHeading:'Tus Derechos como Votante Discapacitado en Filadelfia',
-      rightsAccessTitle:'Máquinas de Votación Accesibles',rightsAccessText:'Cada lugar de votación en Pensilvania debe tener al menos un sistema de votación accesible.',
-      rightsAssistTitle:'Trae a Alguien para Ayudarte',rightsAssistText:'Si necesitas ayuda para votar, puedes traer a una persona de tu elección para asistirte en la cabina.',
-      rightsAltTitle:'Opciones de Boleta Alternativa',rightsAltText:'Si tu lugar no es totalmente accesible, puedes votar por correo o en el Ayuntamiento Sala 142. Contacta <a href="tel:2156868683">(215) 686-VOTE</a>.',
-      builtBy:'Construido para',buildingStatus:'Accesibilidad del Edificio',parkingStatus:'Accesibilidad del Estacionamiento',
-      noResults:'No se encontraron resultados.',ward:'Distrito',division:'División',moreDetail:'Ver detalles',whatThisMeans:'Lo que esto significa:',
-      fullExplain:'Este es uno de los pocos lugares con accesibilidad completa del edificio y estacionamiento accesible.',
-      accessibleExplain:'Este edificio cumple con los estándares de accesibilidad. Verifica el estacionamiento.',
-      partialExplain:'Este edificio cumple solo con estándares mínimos o tiene acceso solo por rampa. Contacta (215) 686-VOTE.',
-      limitedExplain:'Este edificio tiene barreras. Tienes derecho a votar por Boleta Alternativa o en el Ayuntamiento. Contacta (215) 686-VOTE.',
-      unknownExplain:'El estado no fue especificado. Contacta (215) 686-VOTE antes de ir.',
-      legendTitle:'Nivel de Accesibilidad',legendFull:'Totalmente Accesible',legendAccessible:'Edificio Accesible',legendPartial:'Mínimo / Rampa',legendLimited:'Barreras',legendUnknown:'Desconocido',
-      statFull:'totalmente accesible',statAccessible:'edificio accesible',statPartial:'mínimo / rampa',statLimited:'barreras',
-      filterLabel:'Filtrar:',filterAll:'Todos',filterFull:'Totalmente Accesible',filterAccessible:'Edificio Accesible',filterPartial:'Mínimo / Rampa',filterLimited:'Barreras',
-      shareBtn:'\ud83d\udccb Compartir',shareCopied:'\u2705 Copiado!',
-      heroLabel:'de los lugares de votación de Filadelfia son totalmente accesibles',heroSub:'edificio accesible + estacionamiento accesible',
-      nearestAltTitle:'Alternativa accesible más cercana',nearestAltText:'El lugar totalmente accesible más cercano es:',nearestAltMiles:'millas',nearestAltShow:'Mostrar en mapa',
-      downloadCard:'\u2b07 Descargar Mi Tarjeta',
-      wardLabel:'Puntuación por Distrito:',wardPlaces:'lugares',wardSelectPrompt:'Seleccionar distrito',
-      cardTitle:'MI PLAN DE VOTACIÓN',cardAccessLabel:'Accesibilidad:',cardParkingLabel:'Estacionamiento:',cardRights:'Conoce tus derechos: Si este lugar no es accesible, puedes votar por correo o en el Ayuntamiento Sala 142. Llama (215) 686-VOTE.',cardDVRW:'Semana de Derechos de Voto 2026',cardSite:'BallotGap PHL \u2022 meyeringn.github.io/ballotgap-phl'
-    }};
-    function t(k){return STRINGS[currentLang][k]||STRINGS.en[k]||k}
+var STRINGS={en:{
+skipToMap:'Skip to map',subtitle:'Philadelphia Polling Place Accessibility',
+searchLabel:'Find your polling place',searchPlaceholder:'Enter your Philadelphia address',searchBtn:'Search',
+searchHint:'We\'ll find the nearest polling places and show their accessibility status. For your official assigned location, visit <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.',
+statsLoading:'Loading polling place data...',mapLoading:'Loading 1,700+ polling places...',close:'Close',
+rightsHeading:'Your Rights as a Disabled Voter in Philadelphia',
+rightsAccessTitle:'Accessible Voting Machines',rightsAccessText:'Every polling place in Pennsylvania must have at least one accessible voting system. You can ask poll workers for help using it.',
+rightsAssistTitle:'Bring Someone to Help',rightsAssistText:'If you need help voting due to a disability, you can bring a person of your choice to assist you in the voting booth (with some restrictions on who).',
+rightsAltTitle:'Alternative Ballot Options',rightsAltText:'If your polling place isn\'t fully accessible, you can vote by mail, request an Alternative Ballot, or vote at City Hall Room 142 on Election Day. Contact <a href="tel:2156868683">(215) 686-VOTE</a> or visit <a href="https://vote.phila.gov/voting/vote-by-mail/" target="_blank" rel="noopener">vote.phila.gov</a>.',
+builtBy:'Built for',buildingStatus:'Building Accessibility',parkingStatus:'Parking Accessibility',
+noResults:'No results found. Try a Philadelphia street address.',ward:'Ward',division:'Division',moreDetail:'See details & rights',whatThisMeans:'What this means for you:',
+fullExplain:'This is one of the few Philadelphia polling places with both full building accessibility and accessible parking. You should be able to arrive, park, enter, and vote independently.',
+accessibleExplain:'This building meets accessibility standards for entry and navigation. Check the parking status — accessible parking may not be available.',
+partialExplain:'This building meets only minimum accessibility standards or has ramp-only access. Some barriers may exist. Contact (215) 686-VOTE before Election Day to confirm.',
+limitedExplain:'This building has known accessibility barriers. You have the right to vote by Alternative Ballot, by mail, or at City Hall Room 142. Contact (215) 686-VOTE for options.',
+unknownExplain:'Accessibility status wasn\'t specified for this location. Contact (215) 686-VOTE to ask about accessibility before you go.',
+legendTitle:'Accessibility Level',legendFull:'Fully Accessible (F + Parking)',legendAccessible:'Building Accessible (F, A)',legendPartial:'Marginal / Ramp Only (M, R)',legendLimited:'Barriers Present (B)',legendUnknown:'Unknown',
+statFull:'fully accessible',statAccessible:'building accessible',statPartial:'marginal / ramp',statLimited:'barriers',
+filterLabel:'Filter:',filterAll:'All',filterFull:'Fully Accessible',filterAccessible:'Building Accessible',filterPartial:'Marginal / Ramp',filterLimited:'Barriers',
+shareBtn:'\ud83d\udccb Share the Gap',shareCopied:'\u2705 Copied!',
+heroLabel:'of Philadelphia\'s polling places are fully accessible',heroSub:'building accessible + accessible parking — the standard the city itself uses',
+nearestAltTitle:'Nearest accessible alternative',nearestAltText:'The closest fully accessible polling place to this location is:',nearestAltMiles:'miles away',nearestAltShow:'Show on map',
+downloadCard:'\u2b07 Download My Voting Card',directionsBtn:'\ud83e\udded Get Directions',
+wardLabel:'Ward Scoreboard:',wardPlaces:'places',wardSelectPrompt:'Select a ward',
+districtLabel:'Council District:',districtSelectPrompt:'Select a district',districtPlaces:'places',
+districtCardTitle:'City Council District',districtCardRep:'Council Member info:',districtCardLink:'Look up your Council district',
+geoLocating:'Locating...',geoError:'Could not get your location. Try searching by address instead.',geoOutOfRange:'That location doesn\'t appear to be in Philadelphia.',
+cardTitle:'MY VOTING PLAN',cardAccessLabel:'Accessibility:',cardParkingLabel:'Parking:',cardRights:'Know your rights: If this location isn\'t accessible, you can vote by mail, by Alternative Ballot, or at City Hall Room 142. Call (215) 686-VOTE.',cardDVRW:'Disability Voting Rights Week 2026',cardSite:'BallotGap PHL \u2022 meyeringn.github.io/ballotgap-phl',
+incomeToggle:'\ud83d\udcb0 Income Overlay'
+},es:{
+skipToMap:'Ir al mapa',subtitle:'Accesibilidad de Lugares de Votación en Filadelfia',
+searchLabel:'Encuentra tu lugar de votación',searchPlaceholder:'Ingresa tu dirección en Filadelfia',searchBtn:'Buscar',
+searchHint:'Encontraremos los lugares más cercanos y mostraremos su accesibilidad. Para tu ubicación oficial, visita <a href="https://vote.phila.gov" target="_blank" rel="noopener">vote.phila.gov</a>.',
+statsLoading:'Cargando datos...',mapLoading:'Cargando más de 1,700 lugares...',close:'Cerrar',
+rightsHeading:'Tus Derechos como Votante Discapacitado en Filadelfia',
+rightsAccessTitle:'Máquinas de Votación Accesibles',rightsAccessText:'Cada lugar de votación en Pensilvania debe tener al menos un sistema de votación accesible.',
+rightsAssistTitle:'Trae a Alguien para Ayudarte',rightsAssistText:'Si necesitas ayuda para votar, puedes traer a una persona de tu elección para asistirte en la cabina.',
+rightsAltTitle:'Opciones de Boleta Alternativa',rightsAltText:'Si tu lugar no es totalmente accesible, puedes votar por correo o en el Ayuntamiento Sala 142. Contacta <a href="tel:2156868683">(215) 686-VOTE</a>.',
+builtBy:'Construido para',buildingStatus:'Accesibilidad del Edificio',parkingStatus:'Accesibilidad del Estacionamiento',
+noResults:'No se encontraron resultados.',ward:'Distrito',division:'División',moreDetail:'Ver detalles',whatThisMeans:'Lo que esto significa:',
+fullExplain:'Este es uno de los pocos lugares con accesibilidad completa del edificio y estacionamiento accesible.',
+accessibleExplain:'Este edificio cumple con los estándares de accesibilidad. Verifica el estacionamiento.',
+partialExplain:'Este edificio cumple solo con estándares mínimos o tiene acceso solo por rampa. Contacta (215) 686-VOTE.',
+limitedExplain:'Este edificio tiene barreras. Tienes derecho a votar por Boleta Alternativa o en el Ayuntamiento. Contacta (215) 686-VOTE.',
+unknownExplain:'El estado no fue especificado. Contacta (215) 686-VOTE antes de ir.',
+legendTitle:'Nivel de Accesibilidad',legendFull:'Totalmente Accesible',legendAccessible:'Edificio Accesible',legendPartial:'Mínimo / Rampa',legendLimited:'Barreras',legendUnknown:'Desconocido',
+statFull:'totalmente accesible',statAccessible:'edificio accesible',statPartial:'mínimo / rampa',statLimited:'barreras',
+filterLabel:'Filtrar:',filterAll:'Todos',filterFull:'Totalmente Accesible',filterAccessible:'Edificio Accesible',filterPartial:'Mínimo / Rampa',filterLimited:'Barreras',
+shareBtn:'\ud83d\udccb Compartir',shareCopied:'\u2705 Copiado!',
+heroLabel:'de los lugares de votación de Filadelfia son totalmente accesibles',heroSub:'edificio accesible + estacionamiento accesible',
+nearestAltTitle:'Alternativa accesible más cercana',nearestAltText:'El lugar totalmente accesible más cercano es:',nearestAltMiles:'millas',nearestAltShow:'Mostrar en mapa',
+downloadCard:'\u2b07 Descargar Mi Tarjeta',directionsBtn:'\ud83e\udded Obtener Direcciones',
+wardLabel:'Puntuación por Distrito:',wardPlaces:'lugares',wardSelectPrompt:'Seleccionar distrito',
+districtLabel:'Distrito del Concejo:',districtSelectPrompt:'Seleccionar distrito',districtPlaces:'lugares',
+districtCardTitle:'Distrito del Concejo Municipal',districtCardRep:'Info del concejal:',districtCardLink:'Busca tu distrito del Concejo',
+geoLocating:'Localizando...',geoError:'No se pudo obtener tu ubicación. Intenta buscar por dirección.',geoOutOfRange:'Esa ubicación no parece estar en Filadelfia.',
+cardTitle:'MI PLAN DE VOTACIÓN',cardAccessLabel:'Accesibilidad:',cardParkingLabel:'Estacionamiento:',cardRights:'Conoce tus derechos: Si este lugar no es accesible, puedes votar por correo o en el Ayuntamiento Sala 142. Llama (215) 686-VOTE.',cardDVRW:'Semana de Derechos de Voto 2026',cardSite:'BallotGap PHL \u2022 meyeringn.github.io/ballotgap-phl',
+incomeToggle:'\ud83d\udcb0 Ingreso'
+}};
+function t(k){return STRINGS[currentLang][k]||STRINGS.en[k]||k}
 
-    function init(){initMap();loadPollingPlaces();bindEvents()}
-    function initMap(){
-      map=L.map('map',{center:[39.9526,-75.1652],zoom:12,zoomControl:true,attributionControl:true});
-      // DARK MAP TILES — CartoDB Dark Matter
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-        attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-        subdomains:'abcd',maxZoom:19
-      }).addTo(map);
-    }
-    function loadPollingPlaces(){
-      var q=encodeURIComponent('SELECT *, ST_Y(the_geom) AS lat, ST_X(the_geom) AS lng FROM polling_places');
-      fetch('https://phl.carto.com/api/v2/sql?q='+q+'&format=json')
-        .then(function(r){if(!r.ok)throw new Error('fail');return r.json()})
-        .then(function(d){
-          allPlaces=d.rows.filter(function(p){return p.lat&&p.lng});
-          computeWardData();
-          renderMarkers();renderStats();renderHero();populateWardSelect();
-          document.getElementById('loadingOverlay').classList.add('hidden');
-          document.getElementById('mapLegend').style.display='block';
-          document.getElementById('filterBar').style.display='block';
-          document.getElementById('wardBar').style.display='block';
-          document.getElementById('heroBanner').style.display='block';
-        })
-        .catch(function(e){
-          console.error(e);
-          document.getElementById('loadingOverlay').innerHTML='<span style="color:#ff6b6b;text-align:center;padding:1rem">Unable to load data. Please refresh.</span>';
-        });
-    }
+// ---- INIT ----
+function init(){initMap();loadPollingPlaces();bindEvents()}
 
-    // ---- WARD DATA ----
-    function computeWardData(){
-      wardData={};
-      allPlaces.forEach(function(p){
-        var w=String(p.ward);
-        if(!wardData[w]) wardData[w]={total:0,full:0,accessible:0,partial:0,limited:0,unknown:0};
-        wardData[w].total++;
-        var l=getCompositeLevel(p);
-        wardData[w][l]=(wardData[w][l]||0)+1;
-      });
-    }
-    function populateWardSelect(){
-      var sel=document.getElementById('wardSelect');
-      var wards=Object.keys(wardData).sort(function(a,b){return parseInt(a)-parseInt(b)});
-      sel.innerHTML='<option value="">'+t('wardSelectPrompt')+'</option>';
-      wards.forEach(function(w){
-        var opt=document.createElement('option');
-        opt.value=w;opt.textContent=t('ward')+' '+w+' ('+wardData[w].total+' '+t('wardPlaces')+')';
-        sel.appendChild(opt);
-      });
-    }
-    function showWardScore(wardNum){
-      var el=document.getElementById('wardResult');
-      if(!wardNum){el.innerHTML='';return}
-      var d=wardData[wardNum];if(!d){el.innerHTML='';return}
-      var pct=function(n){return d.total?Math.round((n/d.total)*100):0};
-      el.innerHTML=
-        '<div class="ward-bar-visual" aria-label="Accessibility breakdown for Ward '+wardNum+'">'+
-          '<div class="ward-bar-seg" style="width:'+pct(d.full)+'%;background:#1B5E20"></div>'+
-          '<div class="ward-bar-seg" style="width:'+pct(d.accessible)+'%;background:#2E7D32"></div>'+
-          '<div class="ward-bar-seg" style="width:'+pct(d.partial)+'%;background:#E65100"></div>'+
-          '<div class="ward-bar-seg" style="width:'+pct(d.limited)+'%;background:#B71C1C"></div>'+
-          '<div class="ward-bar-seg" style="width:'+pct(d.unknown)+'%;background:#616161"></div>'+
-        '</div>'+
-        '<span style="font-size:.78rem"><strong style="color:#1B5E20">'+d.full+'</strong> full · '+
-        '<strong style="color:#2E7D32">'+d.accessible+'</strong> accessible · '+
-        '<strong style="color:#E65100">'+d.partial+'</strong> marginal · '+
-        '<strong style="color:#B71C1C">'+d.limited+'</strong> barriers</span>';
-    }
+function initMap(){
+map=L.map('map',{center:[39.9526,-75.1652],zoom:12,zoomControl:true,attributionControl:true});
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+subdomains:'abcd',maxZoom:19
+}).addTo(map);
+}
 
-    // ---- HERO BANNER ----
-    function renderHero(){
-      var total=allPlaces.length;
-      globalCounts={full:0,accessible:0,partial:0,limited:0,unknown:0};
-      allPlaces.forEach(function(p){var l=getCompositeLevel(p);globalCounts[l]=(globalCounts[l]||0)+1});
-      var fullPct=Math.round((globalCounts.full/total)*100);
-      document.getElementById('heroNumber').textContent=fullPct+'%';
-      document.getElementById('heroSub').textContent=globalCounts.full+' of '+total.toLocaleString()+' — '+t('heroSub');
-    }
+function loadPollingPlaces(){
+var q=encodeURIComponent('SELECT *, ST_Y(the_geom) AS lat, ST_X(the_geom) AS lng FROM polling_places');
+fetch('https://phl.carto.com/api/v2/sql?q='+q+'&format=json')
+.then(function(r){if(!r.ok)throw new Error('fail');return r.json()})
+.then(function(d){
+allPlaces=d.rows.filter(function(p){return p.lat&&p.lng});
+computeWardData();
+renderMarkers();renderStats();renderHero();populateWardSelect();
+document.getElementById('loadingOverlay').classList.add('hidden');
+document.getElementById('mapLegend').style.display='block';
+document.getElementById('filterBar').style.display='block';
+document.getElementById('wardBar').style.display='block';
+document.getElementById('heroBanner').style.display='block';
+loadCouncilDistricts();
+restoreFromHash();
+})
+.catch(function(e){
+console.error(e);
+document.getElementById('loadingOverlay').innerHTML='<span style="color:#ff6b6b;text-align:center;padding:1rem">Unable to load data. Please refresh.</span>';
+});
+}
 
-    // ---- RENDERING ----
-    function renderMarkers(){
-      markers.forEach(function(m){map.removeLayer(m)});markers=[];
-      allPlaces.forEach(function(place){
-        var level=getCompositeLevel(place);
-        if(activeFilter!=='all'&&level!==activeFilter) return;
-        var color=LEVEL_COLORS[level];
-        var isFull=level==='full';
-        var marker=L.circleMarker([place.lat,place.lng],{
-          radius:isFull?7:5,fillColor:color,
-          color:isFull?'#FFD600':'rgba(255,255,255,0.6)',
-          weight:isFull?2.5:1,opacity:.95,fillOpacity:.9,
-          className:isFull?'pulse-marker':''
-        });
-        marker.bindPopup(function(){return createPopupContent(place)});
-        marker.placeData=place;marker.addTo(map);markers.push(marker);
-      });
-    }
-    function createPopupContent(place){
-      var level=getCompositeLevel(place),label=getCompositeLabel(place),parking=getParkingLabel(place.parking_code);
-      var bg={full:'#E8F5E9',accessible:'#E8F5E9',partial:'#FFF3E0',limited:'#FFEBEE',unknown:'#F5F5F5'};
-      var tc={full:'#1B5E20',accessible:'#2E7D32',partial:'#E65100',limited:'#B71C1C',unknown:'#616161'};
-      return '<div class="popup-name">'+titleCase(place.placename||'Unknown')+'</div>'+
-        '<div class="popup-address">'+titleCase(place.street_address||'')+', '+(place.zip_code||'')+'</div>'+
-        '<div class="popup-status" style="background:'+bg[level]+';color:'+tc[level]+'">'+label+'</div>'+
-        '<div class="popup-parking">'+t('parkingStatus')+': '+parking+'</div>'+
-        '<div class="popup-ward">'+t('ward')+' '+(place.ward||'?')+', '+t('division')+' '+(place.division||'?')+'</div>'+
-        '<button class="popup-detail-link" onclick="window.BallotGap.showDetail(\''+place.ward+'-'+place.division+'\')">'+t('moreDetail')+'</button>';
-    }
-    function renderStats(){
-      if(!allPlaces.length) return;
-      var total=allPlaces.length,pct=function(n){return Math.round((n/total)*100)};
-      document.getElementById('statsBar').innerHTML=
-        '<span class="stat-chip full"><span class="dot"></span>'+globalCounts.full+' '+t('statFull')+' ('+pct(globalCounts.full)+'%)</span>'+
-        '<span class="stat-chip accessible"><span class="dot"></span>'+globalCounts.accessible+' '+t('statAccessible')+' ('+pct(globalCounts.accessible)+'%)</span>'+
-        '<span class="stat-chip partial"><span class="dot"></span>'+globalCounts.partial+' '+t('statPartial')+' ('+pct(globalCounts.partial)+'%)</span>'+
-        '<span class="stat-chip limited"><span class="dot"></span>'+globalCounts.limited+' '+t('statLimited')+' ('+pct(globalCounts.limited)+'%)</span>'+
-        '<span class="stats-total">'+total.toLocaleString()+' total</span>';
-    }
+// ---- COUNCIL DISTRICT DATA (static ward/division → district lookup) ----
+// Source: Committee of Seventy / Philadelphia City Planning Commission
+// 2022 redistricting, in effect through 2031
+// https://seventy.org/political-maps-of-philadelphia/city-council-districts/
+var WD_WHOLE={1:1,3:3,4:4,6:3,7:7,9:8,10:9,11:8,12:8,13:8,14:5,15:5,16:5,17:8,19:7,20:5,21:4,22:8,23:7,24:3,26:2,27:3,30:2,32:5,33:7,34:4,35:9,36:2,37:5,38:4,41:6,45:6,46:3,47:5,48:2,50:9,51:3,52:4,53:9,55:6,57:6,58:10,59:8,60:3,61:9,62:7,63:10,64:6,65:6,66:10};
+// Split wards: [default_district, {division_overrides}]
+var WD_SPLIT={
+2:[1,{9:2,19:2,20:2,21:2,22:2}],
+5:[1,{15:5,20:5,23:5}],
+8:[2,{10:5,11:5,15:5,16:5,17:5,18:5,19:5,22:5,23:5,24:5,25:5,26:5,29:5,30:5,31:5,32:5,33:5}],
+18:[5,{3:7,5:1,8:7,10:7,13:7,14:7,15:7,16:7,17:7,19:1}],
+25:[1,{19:7,20:7}],
+28:[5,{9:4,16:4,17:4,18:4}],
+29:[5,{10:4}],
+31:[1,{1:7,2:7,9:7}],
+39:[1,{14:2,36:2,41:2}],
+40:[2,{4:3,14:3,28:3}],
+42:[7,{12:8,13:8,14:8,15:9,16:8,17:8,18:9,19:9,20:8,21:8,24:9,25:9}],
+43:[7,{1:5,9:5,10:5,13:5,14:5,15:5,16:5,21:5,22:5,23:5,24:5,25:5}],
+44:[3,{1:4,2:4,5:4,7:4,19:4}],
+49:[8,{2:9,3:9,6:9,7:9,8:9,16:9,17:9,18:9,20:9,21:9,22:9}],
+54:[6,{1:7,2:7,3:7,4:7,5:7,6:7,8:9,9:7,11:7,12:9,13:9,17:9,18:9}],
+56:[10,{34:6,40:6}]
+};
+function getDistrictNum(ward,division){
+var w=parseInt(ward),d=parseInt(division);
+if(WD_WHOLE[w]) return WD_WHOLE[w];
+if(WD_SPLIT[w]){var s=WD_SPLIT[w];return s[1][d]!==undefined?s[1][d]:s[0]}
+return null;
+}
+function loadCouncilDistricts(){
+allPlaces.forEach(function(p){
+var dn=getDistrictNum(p.ward,p.division);
+p._district=dn?String(dn):null;
+});
+computeDistrictData();
+if(Object.keys(districtData).length){
+populateDistrictSelect();
+document.getElementById('districtBar').style.display='block';
+}
+}
+function computeDistrictData(){
+districtData={};
+allPlaces.forEach(function(p){
+var d=p._district;if(!d) return;
+if(!districtData[d]) districtData[d]={total:0,full:0,accessible:0,partial:0,limited:0,unknown:0};
+districtData[d].total++;
+var l=getCompositeLevel(p);
+districtData[d][l]=(districtData[d][l]||0)+1;
+});
+}
+function populateDistrictSelect(){
+var sel=document.getElementById('districtSelect');
+var dists=Object.keys(districtData).sort(function(a,b){return parseInt(a)-parseInt(b)});
+sel.innerHTML='<option value="">'+t('districtSelectPrompt')+'</option>';
+dists.forEach(function(d){
+var opt=document.createElement('option');
+opt.value=d;opt.textContent=t('districtLabel').replace(':','')+' '+d+' ('+districtData[d].total+' '+t('districtPlaces')+')';
+sel.appendChild(opt);
+});
+}
+function showDistrictScore(distNum){
+var el=document.getElementById('districtResult');
+if(!distNum){el.innerHTML='';return}
+var d=districtData[distNum];if(!d){el.innerHTML='';return}
+var pct=function(n){return d.total?Math.round((n/d.total)*100):0};
+el.innerHTML=
+'<div class="ward-bar-visual" aria-label="Accessibility breakdown for District '+distNum+'">'+
+'<div class="ward-bar-seg" style="width:'+pct(d.full)+'%;background:#1B5E20"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.accessible)+'%;background:#2E7D32"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.partial)+'%;background:#E65100"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.limited)+'%;background:#B71C1C"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.unknown)+'%;background:#616161"></div>'+
+'</div>'+
+'<span style="font-size:.78rem"><strong style="color:#1B5E20">'+d.full+'</strong> full · '+
+'<strong style="color:#2E7D32">'+d.accessible+'</strong> accessible · '+
+'<strong style="color:#E65100">'+d.partial+'</strong> marginal · '+
+'<strong style="color:#B71C1C">'+d.limited+'</strong> barriers</span>';
+updateHash();
+}
 
-    // ---- FILTER ----
-    function setFilter(level){
-      activeFilter=level;
-      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-filter')===level)});
-      renderMarkers();
-    }
+// ---- WARD DATA ----
+function computeWardData(){
+wardData={};
+allPlaces.forEach(function(p){
+var w=String(p.ward);
+if(!wardData[w]) wardData[w]={total:0,full:0,accessible:0,partial:0,limited:0,unknown:0};
+wardData[w].total++;
+var l=getCompositeLevel(p);
+wardData[w][l]=(wardData[w][l]||0)+1;
+});
+}
+function populateWardSelect(){
+var sel=document.getElementById('wardSelect');
+var wards=Object.keys(wardData).sort(function(a,b){return parseInt(a)-parseInt(b)});
+sel.innerHTML='<option value="">'+t('wardSelectPrompt')+'</option>';
+wards.forEach(function(w){
+var opt=document.createElement('option');
+opt.value=w;opt.textContent=t('ward')+' '+w+' ('+wardData[w].total+' '+t('wardPlaces')+')';
+sel.appendChild(opt);
+});
+}
+function showWardScore(wardNum){
+var el=document.getElementById('wardResult');
+if(!wardNum){el.innerHTML='';return}
+var d=wardData[wardNum];if(!d){el.innerHTML='';return}
+var pct=function(n){return d.total?Math.round((n/d.total)*100):0};
+el.innerHTML=
+'<div class="ward-bar-visual" aria-label="Accessibility breakdown for Ward '+wardNum+'">'+
+'<div class="ward-bar-seg" style="width:'+pct(d.full)+'%;background:#1B5E20"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.accessible)+'%;background:#2E7D32"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.partial)+'%;background:#E65100"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.limited)+'%;background:#B71C1C"></div>'+
+'<div class="ward-bar-seg" style="width:'+pct(d.unknown)+'%;background:#616161"></div>'+
+'</div>'+
+'<span style="font-size:.78rem"><strong style="color:#1B5E20">'+d.full+'</strong> full · '+
+'<strong style="color:#2E7D32">'+d.accessible+'</strong> accessible · '+
+'<strong style="color:#E65100">'+d.partial+'</strong> marginal · '+
+'<strong style="color:#B71C1C">'+d.limited+'</strong> barriers</span>';
+updateHash();
+}
 
-    // ---- SEARCH ----
-    function handleSearch(){
-      var input=document.getElementById('addressInput').value.trim();if(!input) return;
-      document.getElementById('searchBtn').textContent='...';
-      fetch('https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(input+', Philadelphia, PA')+'&format=json&limit=1&countrycodes=us',{headers:{'Accept':'application/json'}})
-        .then(function(r){return r.json()})
-        .then(function(results){
-          document.getElementById('searchBtn').textContent=t('searchBtn');
-          if(!results.length){alert(t('noResults'));return}
-          var uLat=parseFloat(results[0].lat),uLng=parseFloat(results[0].lon);
-          if(searchMarker) map.removeLayer(searchMarker);
-          searchMarker=L.marker([uLat,uLng],{icon:L.divIcon({className:'',html:'<div style="width:16px;height:16px;background:#FFD600;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.5)"></div>',iconSize:[16,16],iconAnchor:[8,8]})}).addTo(map);
-          var sorted=allPlaces.map(function(p){return Object.assign({},p,{distance:haversine(uLat,uLng,p.lat,p.lng)})}).sort(function(a,b){return a.distance-b.distance});
-          var nearest=sorted.slice(0,5);
-          var bounds=L.latLngBounds([[uLat,uLng]]);nearest.forEach(function(p){bounds.extend([p.lat,p.lng])});
-          map.fitBounds(bounds,{padding:[50,50],maxZoom:15});
-          var nm=markers.find(function(m){return m.placeData&&String(m.placeData.ward)===String(nearest[0].ward)&&String(m.placeData.division)===String(nearest[0].division)});
-          if(nm){nm.setRadius(10);nm.openPopup();setTimeout(function(){nm.setRadius(getCompositeLevel(nm.placeData)==='full'?7:5)},5000)}
-          showDetail(nearest[0].ward+'-'+nearest[0].division,true);
-        })
-        .catch(function(){document.getElementById('searchBtn').textContent=t('searchBtn');alert(t('noResults'))});
-    }
+// ---- HERO BANNER ----
+function renderHero(){
+var total=allPlaces.length;
+globalCounts={full:0,accessible:0,partial:0,limited:0,unknown:0};
+allPlaces.forEach(function(p){var l=getCompositeLevel(p);globalCounts[l]=(globalCounts[l]||0)+1});
+var fullPct=Math.round((globalCounts.full/total)*100);
+document.getElementById('heroNumber').textContent=fullPct+'%';
+document.getElementById('heroSub').textContent=globalCounts.full+' of '+total.toLocaleString()+' — '+t('heroSub');
+}
 
-    // ---- DETAIL ----
-    function showDetail(wardDiv,isNearest){
-      var parts=wardDiv.split('-');
-      var place=allPlaces.find(function(p){return String(p.ward)===parts[0]&&String(p.division)===parts[1]});
-      if(!place) return;
-      currentDetailPlace=place;
-      var level=getCompositeLevel(place),label=getCompositeLabel(place),parking=getParkingLabel(place.parking_code);
-      document.getElementById('detailName').textContent=(isNearest?'\ud83d\udccd ':'')+titleCase(place.placename||'Unknown');
-      document.getElementById('detailAddress').textContent=titleCase(place.street_address||'')+', Philadelphia, PA '+(place.zip_code||'');
-      document.getElementById('detailWard').textContent=t('ward')+' '+place.ward+', '+t('division')+' '+place.division;
-      var cc={full:'card-full',accessible:'card-accessible',partial:'card-partial',limited:'card-limited',unknown:'card-unknown'}[level];
-      var ek={full:'fullExplain',accessible:'accessibleExplain',partial:'partialExplain',limited:'limitedExplain',unknown:'unknownExplain'}[level];
-      var pkc='card-unknown';var pc=(place.parking_code||'').toUpperCase().trim();
-      if(pc==='H') pkc='card-accessible'; else if(pc==='N') pkc='card-limited';
-      document.getElementById('detailGrid').innerHTML=
-        '<div class="detail-card '+cc+'"><div class="detail-card-label">'+t('buildingStatus')+'</div><div class="detail-card-text">'+label+'</div><div class="detail-card-text" style="margin-top:.5rem;font-size:.85rem"><strong>'+t('whatThisMeans')+'</strong> '+t(ek)+'</div></div>'+
-        '<div class="detail-card '+pkc+'"><div class="detail-card-label">'+t('parkingStatus')+'</div><div class="detail-card-text">'+parking+'</div></div>';
-      var altEl=document.getElementById('nearestAlt');
-      if(level!=='full'&&level!=='accessible'){
-        var nearAcc=findNearestAccessible(place);
-        if(nearAcc){var dist=haversine(place.lat,place.lng,nearAcc.lat,nearAcc.lng).toFixed(1);
-          altEl.innerHTML='<div class="nearest-alt"><div class="nearest-alt-title">'+t('nearestAltTitle')+'</div><div class="nearest-alt-text">'+t('nearestAltText')+' <strong>'+titleCase(nearAcc.placename||'')+'</strong>, '+titleCase(nearAcc.street_address||'')+' ('+dist+' '+t('nearestAltMiles')+')</div><button class="nearest-alt-link" onclick="window.BallotGap.goToPlace('+nearAcc.lat+','+nearAcc.lng+',\''+nearAcc.ward+'-'+nearAcc.division+'\')">'+t('nearestAltShow')+'</button></div>';
-        } else altEl.innerHTML='';
-      } else altEl.innerHTML='';
-      // SEPTA proximity card
-      var septaEl=document.getElementById('septaCard');
-      var nearStation=findNearestStation(place);
-      if(nearStation){
-        var sDist=haversine(place.lat,place.lng,nearStation.lat,nearStation.lng);
-        var walkMin=Math.round(sDist*20); // ~3mph walk = ~20 min/mile
-        var septaAddr=encodeURIComponent((place.street_address||'')+', Philadelphia PA');
-        septaEl.innerHTML='<div class="septa-card"><div class="septa-card-title">'+(currentLang==='es'?'Acceso SEPTA':'SEPTA Access')+'</div>'+
-          '<div class="septa-card-text">'+(currentLang==='es'?'Estación más cercana':'Nearest station')+': <strong>'+nearStation.n+'</strong> ('+sDist.toFixed(1)+' '+(currentLang==='es'?'millas':'miles')+', ~'+walkMin+' '+(currentLang==='es'?'min caminando':'min walk')+')</div>'+
-          '<div class="septa-card-text" style="margin-top:.3rem"><a href="https://www5.septa.org/travel/trip-planner/?destination='+septaAddr+'" target="_blank" rel="noopener">'+(currentLang==='es'?'Planifica tu viaje en SEPTA':'Plan your SEPTA trip')+'  →</a></div></div>';
-      } else septaEl.innerHTML='';
+// ---- RENDERING (colorblind-safe divIcon markers) ----
+function renderMarkers(){
+markers.forEach(function(m){map.removeLayer(m)});markers=[];
+allPlaces.forEach(function(place){
+var level=getCompositeLevel(place);
+if(activeFilter!=='all'&&level!==activeFilter) return;
+var icon=getMarkerIcon(level);
+var marker=L.marker([place.lat,place.lng],{icon:icon});
+marker.bindPopup(function(){return createPopupContent(place)});
+marker.placeData=place;marker.addTo(map);markers.push(marker);
+});
+}
+function createPopupContent(place){
+var level=getCompositeLevel(place),label=getCompositeLabel(place),parking=getParkingLabel(place.parking_code);
+var bg={full:'#E8F5E9',accessible:'#E8F5E9',partial:'#FFF3E0',limited:'#FFEBEE',unknown:'#F5F5F5'};
+var tc={full:'#1B5E20',accessible:'#2E7D32',partial:'#E65100',limited:'#B71C1C',unknown:'#616161'};
+var districtInfo=place._district?('<div class="popup-ward" style="margin-top:.15rem">'+t('districtLabel')+' '+place._district+'</div>'):'';
+return '<div class="popup-name">'+titleCase(place.placename||'Unknown')+'</div>'+
+'<div class="popup-address">'+titleCase(place.street_address||'')+', '+(place.zip_code||'')+'</div>'+
+'<div class="popup-status" style="background:'+bg[level]+';color:'+tc[level]+'">'+label+'</div>'+
+'<div class="popup-parking">'+t('parkingStatus')+': '+parking+'</div>'+
+'<div class="popup-ward">'+t('ward')+' '+(place.ward||'?')+', '+t('division')+' '+(place.division||'?')+'</div>'+
+districtInfo+
+'<button class="popup-detail-link" onclick="window.BallotGap.showDetail(\''+place.ward+'-'+place.division+'\')">'+t('moreDetail')+'</button>';
+}
+function renderStats(){
+if(!allPlaces.length) return;
+var total=allPlaces.length,pct=function(n){return Math.round((n/total)*100)};
+document.getElementById('statsBar').innerHTML=
+'<span class="stat-chip full"><span class="dot"></span>'+globalCounts.full+' '+t('statFull')+' ('+pct(globalCounts.full)+'%)</span>'+
+'<span class="stat-chip accessible"><span class="dot"></span>'+globalCounts.accessible+' '+t('statAccessible')+' ('+pct(globalCounts.accessible)+'%)</span>'+
+'<span class="stat-chip partial"><span class="dot"></span>'+globalCounts.partial+' '+t('statPartial')+' ('+pct(globalCounts.partial)+'%)</span>'+
+'<span class="stat-chip limited"><span class="dot"></span>'+globalCounts.limited+' '+t('statLimited')+' ('+pct(globalCounts.limited)+'%)</span>'+
+'<span class="stats-total">'+total.toLocaleString()+' total</span>';
+}
 
-      // Neighborhood income context card
-      var nbEl=document.getElementById('nbhoodCard');
-      var zip=place.zip_code;
-      var inc=ZIP_INCOME[zip];
-      if(inc){
-        var incFmt='$'+inc.toLocaleString();
-        var cityMedian=60521;
-        var vs=inc<cityMedian?(currentLang==='es'?'por debajo':'below'):(currentLang==='es'?'por encima':'above');
-        nbEl.innerHTML='<div class="nbhood-card"><div class="nbhood-card-title">'+(currentLang==='es'?'Contexto del Vecindario':'Neighborhood Context')+'</div>'+
-          '<div class="nbhood-card-text">'+(currentLang==='es'?'Ingreso medio del hogar en':'Median household income in')+' '+zip+': <strong>'+incFmt+'</strong> ('+vs+' '+(currentLang==='es'?'la mediana de la ciudad de $60,521':'city median of $60,521')+')</div>'+
-          '<div class="nbhood-card-text" style="margin-top:.2rem;font-size:.78rem;color:var(--text-muted)">'+(currentLang==='es'?'Fuente: ACS 2020-24 vía Pew Charitable Trusts':'Source: ACS 2020-24 via Pew Charitable Trusts')+'</div></div>';
-      } else nbEl.innerHTML='';
+// ---- FILTER ----
+function setFilter(level){
+activeFilter=level;
+document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-filter')===level)});
+renderMarkers();
+updateHash();
+}
 
-      document.getElementById('detailActions').style.display='flex';
-      var panel=document.getElementById('detailPanel');panel.classList.add('visible');
-      panel.scrollIntoView({behavior:'smooth',block:'nearest'});
-    }
-    function findNearestStation(place){
-      var best=null,bestD=Infinity;
-      SEPTA_STATIONS.forEach(function(s){var d=haversine(place.lat,place.lng,s.lat,s.lng);if(d<bestD){bestD=d;best=s}});
-      return best;
-    }
-    function findNearestAccessible(from){
-      var best=null,bestD=Infinity;
-      allPlaces.forEach(function(p){var l=getCompositeLevel(p);if(l==='full'||l==='accessible'){var d=haversine(from.lat,from.lng,p.lat,p.lng);if(d<bestD&&d>0){bestD=d;best=p}}});
-      return best;
-    }
-    function goToPlace(lat,lng,wardDiv){
-      map.setView([lat,lng],16);
-      var m=markers.find(function(mk){return mk.placeData&&(mk.placeData.ward+'-'+mk.placeData.division)===wardDiv});
-      if(m){m.setRadius(10);m.openPopup();setTimeout(function(){m.setRadius(getCompositeLevel(m.placeData)==='full'?7:5)},5000)}
-    }
+// ---- GEOLOCATION ----
+function handleGeolocation(){
+if(!navigator.geolocation){alert(t('geoError'));return}
+var btn=document.getElementById('geoBtn');
+btn.classList.add('locating');btn.setAttribute('aria-label',t('geoLocating'));
+navigator.geolocation.getCurrentPosition(
+function(pos){
+btn.classList.remove('locating');btn.setAttribute('aria-label','Use my current location');
+var uLat=pos.coords.latitude,uLng=pos.coords.longitude;
+// Basic Philly bounds check
+if(uLat<39.86||uLat>40.14||uLng<-75.28||uLng>-74.96){
+alert(t('geoOutOfRange'));return;
+}
+showNearbyResults(uLat,uLng);
+},
+function(){
+btn.classList.remove('locating');btn.setAttribute('aria-label','Use my current location');
+alert(t('geoError'));
+},
+{enableHighAccuracy:true,timeout:10000,maximumAge:60000}
+);
+}
 
-    // ---- SHARE ----
-    function shareTheGap(){
-      var total=allPlaces.length,fullPct=Math.round((globalCounts.full/total)*100);
-      var txt='Only '+fullPct+'% of Philadelphia\'s '+total.toLocaleString()+' polling places are fully accessible (building + parking). Find yours: https://meyeringn.github.io/ballotgap-phl #DisabilityVotingRightsWeek #DVRW2026 #CripTheVote';
-      if(navigator.share){navigator.share({title:'BallotGap PHL',text:txt,url:'https://meyeringn.github.io/ballotgap-phl'}).catch(function(){})}
-      else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){
-        var btn=document.getElementById('shareBtn');btn.textContent=t('shareCopied');btn.classList.add('copied');
-        setTimeout(function(){btn.textContent=t('shareBtn');btn.classList.remove('copied')},2000);
-      })}
-    }
+// ---- SEARCH ----
+function handleSearch(){
+var input=document.getElementById('addressInput').value.trim();if(!input) return;
+document.getElementById('searchBtn').textContent='...';
+fetch('https://nominatim.openstreetmap.org/search?q='+encodeURIComponent(input+', Philadelphia, PA')+'&format=json&limit=1&countrycodes=us',{headers:{'Accept':'application/json'}})
+.then(function(r){return r.json()})
+.then(function(results){
+document.getElementById('searchBtn').textContent=t('searchBtn');
+if(!results.length){alert(t('noResults'));return}
+var uLat=parseFloat(results[0].lat),uLng=parseFloat(results[0].lon);
+showNearbyResults(uLat,uLng);
+})
+.catch(function(){document.getElementById('searchBtn').textContent=t('searchBtn');alert(t('noResults'))});
+}
 
-    // ---- VOTING CARD ----
-    function downloadCard(){
-      if(!currentDetailPlace) return;
-      var p=currentDetailPlace,canvas=document.getElementById('cardCanvas'),ctx=canvas.getContext('2d'),W=1200,H=630;
-      canvas.width=W;canvas.height=H;
-      ctx.fillStyle='#003366';ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='#FFD600';ctx.fillRect(0,77,W,4);
-      ctx.fillStyle='#FFFFFF';ctx.fillRect(0,81,W,468);
-      ctx.fillStyle='#FFD600';ctx.fillRect(0,549,W,4);
-      ctx.fillStyle='#FFFFFF';ctx.font='bold 28px Public Sans, sans-serif';ctx.fillText('BallotGap PHL',30,52);
-      ctx.font='18px Public Sans, sans-serif';ctx.fillText(t('cardDVRW'),340,52);
-      ctx.fillStyle='#003366';ctx.font='bold 36px Public Sans, sans-serif';ctx.fillText(t('cardTitle'),40,135);
-      ctx.fillStyle='#1A1A1A';ctx.font='bold 28px Public Sans, sans-serif';ctx.fillText(titleCase(p.placename||'Unknown'),40,185);
-      ctx.font='22px Public Sans, sans-serif';ctx.fillStyle='#555';ctx.fillText(titleCase(p.street_address||'')+', Philadelphia, PA '+(p.zip_code||''),40,220);
-      ctx.font='18px Public Sans, sans-serif';ctx.fillText(t('ward')+' '+p.ward+', '+t('division')+' '+p.division,40,250);
-      var level=getCompositeLevel(p);
-      var sC={full:'#1B5E20',accessible:'#2E7D32',partial:'#E65100',limited:'#B71C1C',unknown:'#616161'};
-      var sBg={full:'#E8F5E9',accessible:'#E8F5E9',partial:'#FFF3E0',limited:'#FFEBEE',unknown:'#F5F5F5'};
-      ctx.fillStyle=sBg[level];ctx.fillRect(40,278,540,80);ctx.fillStyle=sC[level];ctx.fillRect(40,278,6,80);
-      ctx.font='bold 18px Public Sans, sans-serif';ctx.fillText(t('cardAccessLabel'),60,313);
-      ctx.font='22px Public Sans, sans-serif';ctx.fillText(getCompositeLabel(p),240,313);
-      ctx.font='bold 18px Public Sans, sans-serif';ctx.fillText(t('cardParkingLabel'),60,343);
-      ctx.font='22px Public Sans, sans-serif';ctx.fillText(getParkingLabel(p.parking_code),240,343);
-      ctx.fillStyle='#E3F2FD';ctx.fillRect(40,378,1120,90);ctx.fillStyle='#003366';ctx.fillRect(40,378,6,90);
-      ctx.font='16px Public Sans, sans-serif';ctx.fillStyle='#003366';wrapText(ctx,t('cardRights'),60,408,1080,22);
-      ctx.fillStyle='rgba(255,255,255,0.9)';ctx.font='16px Public Sans, sans-serif';ctx.fillText(t('cardSite'),40,520);
-      ctx.fillStyle='#FFFFFF';ctx.font='14px Public Sans, sans-serif';ctx.fillText('Data: Philadelphia City Commissioners via OpenDataPhilly  |  vote.phila.gov  |  (215) 686-VOTE',30,H-18);
-      var link=document.createElement('a');link.download='my-voting-plan-ballotgap-phl.png';link.href=canvas.toDataURL('image/png');link.click();
-    }
-    function wrapText(ctx,text,x,y,maxW,lineH){
-      var words=text.split(' '),line='';
-      for(var i=0;i<words.length;i++){var test=line+words[i]+' ';if(ctx.measureText(test).width>maxW&&i>0){ctx.fillText(line,x,y);line=words[i]+' ';y+=lineH}else{line=test}}
-      ctx.fillText(line,x,y);
-    }
+// Shared logic for search and geolocation
+function showNearbyResults(uLat,uLng){
+if(searchMarker) map.removeLayer(searchMarker);
+searchMarker=L.marker([uLat,uLng],{icon:L.divIcon({className:'',html:'<div style="width:16px;height:16px;background:#FFD600;border:3px solid #fff;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.5)"></div>',iconSize:[16,16],iconAnchor:[8,8]})}).addTo(map);
+var sorted=allPlaces.map(function(p){return Object.assign({},p,{distance:haversine(uLat,uLng,p.lat,p.lng)})}).sort(function(a,b){return a.distance-b.distance});
+var nearest=sorted.slice(0,5);
+var bounds=L.latLngBounds([[uLat,uLng]]);nearest.forEach(function(p){bounds.extend([p.lat,p.lng])});
+map.fitBounds(bounds,{padding:[50,50],maxZoom:15});
+// Highlight nearest marker
+var nm=markers.find(function(m){return m.placeData&&String(m.placeData.ward)===String(nearest[0].ward)&&String(m.placeData.division)===String(nearest[0].division)});
+if(nm){highlightMarker(nm);nm.openPopup()}
+showDetail(nearest[0].ward+'-'+nearest[0].division,true);
+// Screen reader announcement
+announce(nearest[0]?titleCase(nearest[0].placename||'Unknown')+', '+getCompositeLabel(nearest[0]):'');
+updateHash(uLat,uLng,nearest[0].ward+'-'+nearest[0].division);
+}
 
-    // ---- INCOME OVERLAY ----
-    function toggleIncomeOverlay(){
-      incomeLayerVisible=!incomeLayerVisible;
-      var btn=document.getElementById('incomeToggle');
-      btn.classList.toggle('active',incomeLayerVisible);
-      document.getElementById('incomeLegend').style.display=incomeLayerVisible?'block':'none';
-      if(incomeLayerVisible){
-        // Compute ZIP centroids from polling place data
-        var zipGroups={};
-        allPlaces.forEach(function(p){
-          var z=p.zip_code;if(!z||!ZIP_INCOME[z]) return;
-          if(!zipGroups[z]) zipGroups[z]={lats:[],lngs:[]};
-          zipGroups[z].lats.push(p.lat);zipGroups[z].lngs.push(p.lng);
-        });
-        Object.keys(zipGroups).forEach(function(z){
-          var g=zipGroups[z];
-          var cLat=g.lats.reduce(function(a,b){return a+b},0)/g.lats.length;
-          var cLng=g.lngs.reduce(function(a,b){return a+b},0)/g.lngs.length;
-          var color=getIncomeColor(z);
-          if(!color) return;
-          var circle=L.circle([cLat,cLng],{
-            radius:800,fillColor:color,fillOpacity:.18,color:color,weight:1,opacity:.3,interactive:false
-          }).addTo(map);
-          incomeCircles.push(circle);
-        });
-      } else {
-        incomeCircles.forEach(function(c){map.removeLayer(c)});
-        incomeCircles=[];
-      }
-    }
+function highlightMarker(mk){
+var el=mk.getElement();
+if(el){el.classList.add('bg-highlight');setTimeout(function(){el.classList.remove('bg-highlight')},5000)}
+}
 
-    // ---- LANGUAGE ----
-    function toggleLanguage(){
-      currentLang=currentLang==='en'?'es':'en';
-      var btn=document.getElementById('langToggle');btn.textContent=currentLang==='en'?'Español':'English';
-      document.querySelectorAll('[data-i18n]').forEach(function(el){var s=t(el.getAttribute('data-i18n'));if(s)el.innerHTML=s});
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){var s=t(el.getAttribute('data-i18n-placeholder'));if(s)el.setAttribute('placeholder',s)});
-      renderHero();renderStats();renderMarkers();populateWardSelect();
-      document.getElementById('wardResult').innerHTML='';
-    }
+function announce(msg){
+var el=document.getElementById('srAnnounce');
+el.textContent='';
+setTimeout(function(){el.textContent=msg},100);
+}
 
-    // ---- EVENTS ----
-    function bindEvents(){
-      document.getElementById('searchBtn').addEventListener('click',handleSearch);
-      document.getElementById('addressInput').addEventListener('keydown',function(e){if(e.key==='Enter')handleSearch()});
-      document.getElementById('langToggle').addEventListener('click',toggleLanguage);
-      document.getElementById('detailClose').addEventListener('click',function(){document.getElementById('detailPanel').classList.remove('visible')});
-      document.getElementById('shareBtn').addEventListener('click',shareTheGap);
-      document.getElementById('downloadCardBtn').addEventListener('click',downloadCard);
-      document.getElementById('wardSelect').addEventListener('change',function(){showWardScore(this.value)});
-      document.querySelectorAll('.filter-btn').forEach(function(btn){btn.addEventListener('click',function(){setFilter(this.getAttribute('data-filter'))})});
-      document.getElementById('incomeToggle').addEventListener('click',toggleIncomeOverlay);
-    }
-    function haversine(lat1,lng1,lat2,lng2){var R=3959,dLat=toRad(lat2-lat1),dLng=toRad(lng2-lng1);var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLng/2)*Math.sin(dLng/2);return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))}
-    function toRad(d){return d*Math.PI/180}
-    function titleCase(s){return s.toLowerCase().replace(/\b\w/g,function(c){return c.toUpperCase()})}
-    window.BallotGap={showDetail:showDetail,goToPlace:goToPlace};
-    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}
-  })();
-  </script>
+// ---- DETAIL ----
+function showDetail(wardDiv,isNearest){
+var parts=wardDiv.split('-');
+var place=allPlaces.find(function(p){return String(p.ward)===parts[0]&&String(p.division)===parts[1]});
+if(!place) return;
+currentDetailPlace=place;
+var level=getCompositeLevel(place),label=getCompositeLabel(place),parking=getParkingLabel(place.parking_code);
+document.getElementById('detailName').textContent=(isNearest?'\ud83d\udccd ':'')+titleCase(place.placename||'Unknown');
+document.getElementById('detailAddress').textContent=titleCase(place.street_address||'')+', Philadelphia, PA '+(place.zip_code||'');
+document.getElementById('detailWard').textContent=t('ward')+' '+place.ward+', '+t('division')+' '+place.division;
+var cc={full:'card-full',accessible:'card-accessible',partial:'card-partial',limited:'card-limited',unknown:'card-unknown'}[level];
+var ek={full:'fullExplain',accessible:'accessibleExplain',partial:'partialExplain',limited:'limitedExplain',unknown:'unknownExplain'}[level];
+var pkc='card-unknown';var pc=(place.parking_code||'').toUpperCase().trim();
+if(pc==='H') pkc='card-accessible'; else if(pc==='N') pkc='card-limited';
+document.getElementById('detailGrid').innerHTML=
+'<div class="detail-card '+cc+'"><div class="detail-card-label">'+t('buildingStatus')+'</div><div class="detail-card-text">'+label+'</div><div class="detail-card-text" style="margin-top:.5rem;font-size:.85rem"><strong>'+t('whatThisMeans')+'</strong> '+t(ek)+'</div></div>'+
+'<div class="detail-card '+pkc+'"><div class="detail-card-label">'+t('parkingStatus')+'</div><div class="detail-card-text">'+parking+'</div></div>';
+
+// Nearest accessible alternative
+var altEl=document.getElementById('nearestAlt');
+if(level!=='full'&&level!=='accessible'){
+var nearAcc=findNearestAccessible(place);
+if(nearAcc){var dist=haversine(place.lat,place.lng,nearAcc.lat,nearAcc.lng).toFixed(1);
+altEl.innerHTML='<div class="nearest-alt"><div class="nearest-alt-title">'+t('nearestAltTitle')+'</div><div class="nearest-alt-text">'+t('nearestAltText')+' <strong>'+titleCase(nearAcc.placename||'')+'</strong>, '+titleCase(nearAcc.street_address||'')+' ('+dist+' '+t('nearestAltMiles')+')</div><button class="nearest-alt-link" onclick="window.BallotGap.goToPlace('+nearAcc.lat+','+nearAcc.lng+',\''+nearAcc.ward+'-'+nearAcc.division+'\')">'+t('nearestAltShow')+'</button></div>';
+} else altEl.innerHTML='';
+} else altEl.innerHTML='';
+
+// SEPTA proximity
+var septaEl=document.getElementById('septaCard');
+var nearStation=findNearestStation(place);
+if(nearStation){
+var sDist=haversine(place.lat,place.lng,nearStation.lat,nearStation.lng);
+var walkMin=Math.round(sDist*20);
+var septaAddr=encodeURIComponent((place.street_address||'')+', Philadelphia PA');
+septaEl.innerHTML='<div class="septa-card"><div class="septa-card-title">'+(currentLang==='es'?'Acceso SEPTA':'SEPTA Access')+'</div>'+
+'<div class="septa-card-text">'+(currentLang==='es'?'Estación más cercana':'Nearest station')+': <strong>'+nearStation.n+'</strong> ('+sDist.toFixed(1)+' '+(currentLang==='es'?'millas':'miles')+', ~'+walkMin+' '+(currentLang==='es'?'min caminando':'min walk')+')</div>'+
+'<div class="septa-card-text" style="margin-top:.3rem"><a href="https://www5.septa.org/travel/trip-planner/?destination='+septaAddr+'" target="_blank" rel="noopener">'+(currentLang==='es'?'Planifica tu viaje en SEPTA':'Plan your SEPTA trip')+' →</a></div></div>';
+} else septaEl.innerHTML='';
+
+// Neighborhood income
+var nbEl=document.getElementById('nbhoodCard');
+var zip=place.zip_code;var inc=ZIP_INCOME[zip];
+if(inc){
+var incFmt='$'+inc.toLocaleString();var cityMedian=60521;
+var vs=inc<cityMedian?(currentLang==='es'?'por debajo':'below'):(currentLang==='es'?'por encima':'above');
+nbEl.innerHTML='<div class="nbhood-card"><div class="nbhood-card-title">'+(currentLang==='es'?'Contexto del Vecindario':'Neighborhood Context')+'</div>'+
+'<div class="nbhood-card-text">'+(currentLang==='es'?'Ingreso medio del hogar en':'Median household income in')+' '+zip+': <strong>'+incFmt+'</strong> ('+vs+' '+(currentLang==='es'?'la mediana de la ciudad de $60,521':'city median of $60,521')+')</div>'+
+'<div class="nbhood-card-text" style="margin-top:.2rem;font-size:.78rem;color:var(--text-muted)">'+(currentLang==='es'?'Fuente: ACS 2020-24 vía Pew Charitable Trusts':'Source: ACS 2020-24 via Pew Charitable Trusts')+'</div></div>';
+} else nbEl.innerHTML='';
+
+// Council district card
+var dcEl=document.getElementById('districtCard');
+if(place._district){
+var dNum=place._district;
+var dInfo=districtData[dNum];
+var dFullPct=dInfo?Math.round((dInfo.full/dInfo.total)*100)+'%':'?';
+dcEl.innerHTML='<div class="district-card"><div class="district-card-title">'+t('districtCardTitle')+' '+dNum+'</div>'+
+'<div class="district-card-text">'+(currentLang==='es'?'Totalmente accesible en este distrito':'Fully accessible in this district')+': <strong>'+dFullPct+'</strong>'+(dInfo?' ('+dInfo.full+' of '+dInfo.total+')':'')+'</div>'+
+'<div class="district-card-text" style="margin-top:.3rem"><a href="https://phlcouncil.com/council-members/" target="_blank" rel="noopener">'+t('districtCardLink')+' →</a></div></div>';
+} else dcEl.innerHTML='';
+
+// Directions link
+var dirBtn=document.getElementById('directionsBtn');
+dirBtn.href='https://www.google.com/maps/dir/?api=1&destination='+place.lat+','+place.lng+'&travelmode=walking';
+
+document.getElementById('detailActions').style.display='flex';
+var panel=document.getElementById('detailPanel');panel.classList.add('visible');
+panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+updateHash();
+}
+function findNearestStation(place){
+var best=null,bestD=Infinity;
+SEPTA_STATIONS.forEach(function(s){var d=haversine(place.lat,place.lng,s.lat,s.lng);if(d<bestD){bestD=d;best=s}});
+return best;
+}
+function findNearestAccessible(from){
+var best=null,bestD=Infinity;
+allPlaces.forEach(function(p){var l=getCompositeLevel(p);if(l==='full'||l==='accessible'){var d=haversine(from.lat,from.lng,p.lat,p.lng);if(d<bestD&&d>0){bestD=d;best=p}}});
+return best;
+}
+function goToPlace(lat,lng,wardDiv){
+map.setView([lat,lng],16);
+var m=markers.find(function(mk){return mk.placeData&&(mk.placeData.ward+'-'+mk.placeData.division)===wardDiv});
+if(m){highlightMarker(m);m.openPopup()}
+}
+
+// ---- SHARE ----
+function shareTheGap(){
+var total=allPlaces.length,fullPct=Math.round((globalCounts.full/total)*100);
+var txt='Only '+fullPct+'% of Philadelphia\'s '+total.toLocaleString()+' polling places are fully accessible (building + parking). Find yours: https://meyeringn.github.io/ballotgap-phl #DisabilityVotingRightsWeek #DVRW2026 #CripTheVote';
+if(navigator.share){navigator.share({title:'BallotGap PHL',text:txt,url:'https://meyeringn.github.io/ballotgap-phl'}).catch(function(){})}
+else if(navigator.clipboard){navigator.clipboard.writeText(txt).then(function(){
+var btn=document.getElementById('shareBtn');btn.textContent=t('shareCopied');btn.classList.add('copied');
+setTimeout(function(){btn.textContent=t('shareBtn');btn.classList.remove('copied')},2000);
+})}
+}
+
+// ---- DEEP LINKING (hash state) ----
+function updateHash(lat,lng,placeId){
+if(hashUpdatePaused) return;
+var parts=[];
+if(lat&&lng){parts.push('lat='+lat.toFixed(5));parts.push('lng='+lng.toFixed(5))}
+if(placeId) parts.push('p='+placeId);
+else if(currentDetailPlace) parts.push('p='+currentDetailPlace.ward+'-'+currentDetailPlace.division);
+if(activeFilter!=='all') parts.push('f='+activeFilter);
+var ws=document.getElementById('wardSelect').value;
+if(ws) parts.push('w='+ws);
+var ds=document.getElementById('districtSelect').value;
+if(ds) parts.push('d='+ds);
+if(currentLang!=='en') parts.push('lang='+currentLang);
+var newHash=parts.length?'#'+parts.join('&'):'';
+if(window.location.hash!==newHash){
+history.replaceState(null,null,newHash||window.location.pathname);
+}
+}
+function parseHash(){
+var h=window.location.hash.replace('#','');if(!h) return null;
+var params={};
+h.split('&').forEach(function(pair){var kv=pair.split('=');if(kv.length===2) params[kv[0]]=decodeURIComponent(kv[1])});
+return params;
+}
+function restoreFromHash(){
+var params=parseHash();if(!params) return;
+hashUpdatePaused=true;
+if(params.lang&&params.lang==='es'){toggleLanguage()}
+if(params.f&&params.f!=='all'){setFilter(params.f)}
+if(params.w){document.getElementById('wardSelect').value=params.w;showWardScore(params.w)}
+if(params.d){document.getElementById('districtSelect').value=params.d;showDistrictScore(params.d)}
+if(params.lat&&params.lng){
+var lat=parseFloat(params.lat),lng=parseFloat(params.lng);
+if(!isNaN(lat)&&!isNaN(lng)){showNearbyResults(lat,lng)}
+} else if(params.p){
+showDetail(params.p,false);
+var parts=params.p.split('-');
+var place=allPlaces.find(function(pp){return String(pp.ward)===parts[0]&&String(pp.division)===parts[1]});
+if(place) map.setView([place.lat,place.lng],15);
+}
+hashUpdatePaused=false;
+}
+
+// ---- VOTING CARD ----
+function downloadCard(){
+if(!currentDetailPlace) return;
+var p=currentDetailPlace,canvas=document.getElementById('cardCanvas'),ctx=canvas.getContext('2d'),W=1200,H=630;
+canvas.width=W;canvas.height=H;
+ctx.fillStyle='#003366';ctx.fillRect(0,0,W,H);
+ctx.fillStyle='#FFD600';ctx.fillRect(0,77,W,4);
+ctx.fillStyle='#FFFFFF';ctx.fillRect(0,81,W,468);
+ctx.fillStyle='#FFD600';ctx.fillRect(0,549,W,4);
+ctx.fillStyle='#FFFFFF';ctx.font='bold 28px Public Sans, sans-serif';ctx.fillText('BallotGap PHL',30,52);
+ctx.font='18px Public Sans, sans-serif';ctx.fillText(t('cardDVRW'),340,52);
+ctx.fillStyle='#003366';ctx.font='bold 36px Public Sans, sans-serif';ctx.fillText(t('cardTitle'),40,135);
+ctx.fillStyle='#1A1A1A';ctx.font='bold 28px Public Sans, sans-serif';ctx.fillText(titleCase(p.placename||'Unknown'),40,185);
+ctx.font='22px Public Sans, sans-serif';ctx.fillStyle='#555';ctx.fillText(titleCase(p.street_address||'')+', Philadelphia, PA '+(p.zip_code||''),40,220);
+ctx.font='18px Public Sans, sans-serif';ctx.fillText(t('ward')+' '+p.ward+', '+t('division')+' '+p.division,40,250);
+var level=getCompositeLevel(p);
+var sC={full:'#1B5E20',accessible:'#2E7D32',partial:'#E65100',limited:'#B71C1C',unknown:'#616161'};
+var sBg={full:'#E8F5E9',accessible:'#E8F5E9',partial:'#FFF3E0',limited:'#FFEBEE',unknown:'#F5F5F5'};
+ctx.fillStyle=sBg[level];ctx.fillRect(40,278,540,80);ctx.fillStyle=sC[level];ctx.fillRect(40,278,6,80);
+ctx.font='bold 18px Public Sans, sans-serif';ctx.fillText(t('cardAccessLabel'),60,313);
+ctx.font='22px Public Sans, sans-serif';ctx.fillText(getCompositeLabel(p),240,313);
+ctx.font='bold 18px Public Sans, sans-serif';ctx.fillText(t('cardParkingLabel'),60,343);
+ctx.font='22px Public Sans, sans-serif';ctx.fillText(getParkingLabel(p.parking_code),240,343);
+ctx.fillStyle='#E3F2FD';ctx.fillRect(40,378,1120,90);ctx.fillStyle='#003366';ctx.fillRect(40,378,6,90);
+ctx.font='16px Public Sans, sans-serif';ctx.fillStyle='#003366';wrapText(ctx,t('cardRights'),60,408,1080,22);
+ctx.fillStyle='rgba(255,255,255,0.9)';ctx.font='16px Public Sans, sans-serif';ctx.fillText(t('cardSite'),40,520);
+ctx.fillStyle='#FFFFFF';ctx.font='14px Public Sans, sans-serif';ctx.fillText('Data: Philadelphia City Commissioners via OpenDataPhilly | vote.phila.gov | (215) 686-VOTE',30,H-18);
+var link=document.createElement('a');link.download='my-voting-plan-ballotgap-phl.png';link.href=canvas.toDataURL('image/png');link.click();
+}
+function wrapText(ctx,text,x,y,maxW,lineH){
+var words=text.split(' '),line='';
+for(var i=0;i<words.length;i++){var test=line+words[i]+' ';if(ctx.measureText(test).width>maxW&&i>0){ctx.fillText(line,x,y);line=words[i]+' ';y+=lineH}else{line=test}}
+ctx.fillText(line,x,y);
+}
+
+// ---- INCOME OVERLAY ----
+function toggleIncomeOverlay(){
+incomeLayerVisible=!incomeLayerVisible;
+document.getElementById('incomeToggle').classList.toggle('active',incomeLayerVisible);
+document.getElementById('incomeLegend').style.display=incomeLayerVisible?'block':'none';
+if(incomeLayerVisible){
+var zipGroups={};
+allPlaces.forEach(function(p){
+var z=p.zip_code;if(!z||!ZIP_INCOME[z]) return;
+if(!zipGroups[z]) zipGroups[z]={lats:[],lngs:[]};
+zipGroups[z].lats.push(p.lat);zipGroups[z].lngs.push(p.lng);
+});
+Object.keys(zipGroups).forEach(function(z){
+var g=zipGroups[z];
+var cLat=g.lats.reduce(function(a,b){return a+b},0)/g.lats.length;
+var cLng=g.lngs.reduce(function(a,b){return a+b},0)/g.lngs.length;
+var color=getIncomeColor(z);if(!color) return;
+var circle=L.circle([cLat,cLng],{radius:800,fillColor:color,fillOpacity:.18,color:color,weight:1,opacity:.3,interactive:false}).addTo(map);
+incomeCircles.push(circle);
+});
+} else {
+incomeCircles.forEach(function(c){map.removeLayer(c)});incomeCircles=[];
+}
+}
+
+// ---- LANGUAGE ----
+function toggleLanguage(){
+currentLang=currentLang==='en'?'es':'en';
+document.getElementById('langToggle').textContent=currentLang==='en'?'Español':'English';
+document.querySelectorAll('[data-i18n]').forEach(function(el){var s=t(el.getAttribute('data-i18n'));if(s)el.innerHTML=s});
+document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){var s=t(el.getAttribute('data-i18n-placeholder'));if(s)el.setAttribute('placeholder',s)});
+renderHero();renderStats();renderMarkers();populateWardSelect();
+if(Object.keys(districtData).length) populateDistrictSelect();
+document.getElementById('wardResult').innerHTML='';
+document.getElementById('districtResult').innerHTML='';
+updateHash();
+}
+
+// ---- EVENTS ----
+function bindEvents(){
+document.getElementById('searchBtn').addEventListener('click',handleSearch);
+document.getElementById('addressInput').addEventListener('keydown',function(e){if(e.key==='Enter')handleSearch()});
+document.getElementById('geoBtn').addEventListener('click',handleGeolocation);
+document.getElementById('langToggle').addEventListener('click',toggleLanguage);
+document.getElementById('detailClose').addEventListener('click',function(){
+document.getElementById('detailPanel').classList.remove('visible');currentDetailPlace=null;updateHash();
+});
+document.getElementById('shareBtn').addEventListener('click',shareTheGap);
+document.getElementById('downloadCardBtn').addEventListener('click',downloadCard);
+document.getElementById('wardSelect').addEventListener('change',function(){showWardScore(this.value)});
+document.getElementById('districtSelect').addEventListener('change',function(){showDistrictScore(this.value)});
+document.querySelectorAll('.filter-btn').forEach(function(btn){btn.addEventListener('click',function(){setFilter(this.getAttribute('data-filter'))})});
+document.getElementById('incomeToggle').addEventListener('click',toggleIncomeOverlay);
+window.addEventListener('hashchange',function(){if(!hashUpdatePaused&&allPlaces.length) restoreFromHash()});
+}
+function haversine(lat1,lng1,lat2,lng2){var R=3959,dLat=toRad(lat2-lat1),dLng=toRad(lng2-lng1);var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLng/2)*Math.sin(dLng/2);return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))}
+function toRad(d){return d*Math.PI/180}
+function titleCase(s){return s.toLowerCase().replace(/\b\w/g,function(c){return c.toUpperCase()})}
+window.BallotGap={showDetail:showDetail,goToPlace:goToPlace};
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init)}else{init()}
+})();
+</script>
 </body>
 </html>
+
