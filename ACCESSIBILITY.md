@@ -19,7 +19,7 @@ Automated tools catch only some barriers. Until the manual review is done, pleas
 
 ## Fixed in November 2026
 
-The first automated scan found issues that are now fixed: labels for four page regions, the address field's autofill setting, and an empty heading.
+The first automated scan found issues that are now fixed: labels for four page regions, the address field's autofill setting, and an empty heading, and the language button's spoken name, which now include the words you see on screen.
 
 ## Known issues
 
