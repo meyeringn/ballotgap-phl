@@ -4,6 +4,8 @@
 
 BallotGap PHL is an independent, nonpartisan, single-file civic technology application for Philadelphia voters and election administrators. It translates published polling-place accessibility classifications into plain language and helps identify areas for further investigation. It is not an official election service.
 
+**Data last verified:** November 2026
+
 ## Why it exists
 
 Disabled voters should not need to interpret GIS tables to find basic accessibility information. Administrators and advocates also need transparent, comparable ward-level information. The app makes published information easier to explore while identifying its limitations.
