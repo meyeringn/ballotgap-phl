@@ -27,7 +27,7 @@ Disabled voters should not need to interpret GIS tables to find basic accessibil
 - On-demand nearby bus/trolley stop discovery from OpenStreetMap, with straight-line distances.
 - Links to SEPTA's official trip planner, service alerts and accessibility information.
 - English/Spanish interface, readable text voting-plan export, print view, and location-only deep links.
-- No user account, analytics, tracking pixels, cookies or persistent address storage.
+- No user account, tracking pixels, cookies or persistent address storage. Page visits are counted anonymously with GoatCounter, which records the page, never your address.
 
 ## Instructions for voters
 
