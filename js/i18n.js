@@ -1,0 +1,147 @@
+// Interface text in English and Spanish.
+// Two ways text gets translated:
+//   1. Elements with data-i="key" use the strings below (both languages MUST have the key).
+//   2. Elements with data-en="..." data-es="..." carry both strings inline.
+// Dynamic messages in app.js use say('English', 'Español').
+// `npm run check` fails if a key exists in one language but not the other.
+(function (root) {
+  'use strict';
+  const BallotGap = (root.BallotGap = root.BallotGap || {});
+
+  BallotGap.words = {
+    en: {
+      publicService: "Independent, nonpartisan civic tool",
+      headline: "Where do I vote? Can I access it? How do I get there?",
+      intro: "Explore the City Commissioners’ published accessibility information. Address matches are provisional: always confirm your official assignment before Election Day.",
+      searchLabel: "Enter a Philadelphia street address",
+      search: "Find polling place",
+      location: "Use location",
+      privacy: "Address searches are sent to OpenStreetMap Nominatim and coordinates to Philadelphia GIS. BallotGap does not store your address or put it in shared links. Third-party services have their own privacy policies.",
+      officialLookup: "Check your official assignment in Philadelphia Atlas",
+      caution: "Important:",
+      lookupInitial: "Nearby polling places are not substitutes for your assigned location.",
+      dataExplore: "Published data",
+      citywide: "Citywide accessibility",
+      classificationNote: "“FH” means the published building code is F and the parking code is H. These are administrative classifications, not an on-site audit. Percentages describe dataset records, not voters.",
+      explorePlaces: "Explore polling places",
+      filterLabel: "Accessibility",
+      wardLabel: "Ward",
+      mapView: "Map",
+      listView: "List",
+      mapHelp: "Map symbols use distinct shapes and colors. The list below offers the same information without a map.",
+      showMore: "Show more",
+      building: "Building access",
+      parking: "Parking",
+      dataWarning: "A published code does not verify the entrance, sidewalk, route, or conditions on Election Day. Call 215-686-VOTE with questions.",
+      transit: "SEPTA and getting there",
+      transitDisclaimer: "Nearby stops are geographic estimates. Stop proximity does not verify an accessible vehicle, boarding area, sidewalk, or full trip.",
+      findStops: "Find nearby bus and trolley stops",
+      tripPlanner: "SEPTA trip planner",
+      alerts: "Service alerts",
+      septaAccess: "SEPTA accessibility",
+      directions: "Directions",
+      copyLink: "Copy place link",
+      printPlan: "Print plan",
+      downloadText: "Save text plan",
+      policy: "For election administrators and advocates",
+      compare: "Compare accessibility across wards and Council districts",
+      policyHelp: "Ward comparisons use ward and division codes from the published polling-place dataset. Council district comparisons require a successful official GIS lookup. These figures are screening tools, not a finding that any site violates the law.",
+      groupBy: "Group by",
+      sortBy: "Sort",
+      downloadCSV: "Download CSV",
+      priorities: "Planning priorities",
+      area: "Area",
+      total: "Records",
+      unknown: "Unknown",
+      fhRate: "FH share",
+      denominator: "FH share = FH records ÷ all records in that area, including unknown codes. Shared polling-place buildings may appear in multiple division records.",
+      rights: "Voting rights and accommodations",
+      machines: "Accessible voting systems",
+      machinesText: "Pennsylvania polling places must provide an accessible voting system. Ask poll workers about accessible voting and assistance.",
+      assistance: "Assistance of your choice",
+      assistanceText: "Voters who need assistance because of a disability may choose someone to help, with legal restrictions on certain people.",
+      alternatives: "Alternative ballot and other options",
+      alternativesText: "Philadelphia describes alternative ballot options for eligible voters whose assigned locations do not have the FH designation. Rules and deadlines matter. Confirm your eligibility and instructions with the City Commissioners.",
+      officialRights: "Official accessibility guidance",
+      footerText: "Data is requested at page load; no guarantee of real-time updates. Always confirm with election officials.",
+      dataVerified: "Data last verified: November 2026",
+      a11yStatement: "Accessibility statement"
+    },
+    es: {
+      publicService: "Herramienta cívica independiente y no partidista",
+      headline: "¿Dónde voto? ¿Es accesible? ¿Cómo llego?",
+      intro: "Consulta la información de accesibilidad publicada por los Comisionados Electorales. Las coincidencias de dirección son provisionales: confirma siempre tu lugar asignado.",
+      searchLabel: "Ingresa una dirección de Filadelfia",
+      search: "Buscar lugar de votación",
+      location: "Usar mi ubicación",
+      privacy: "La dirección se envía a OpenStreetMap Nominatim y las coordenadas al sistema GIS de Filadelfia. BallotGap no guarda tu dirección ni la incluye en enlaces compartidos. Los servicios externos tienen sus propias políticas de privacidad.",
+      officialLookup: "Confirma tu lugar asignado en Philadelphia Atlas",
+      caution: "Importante:",
+      lookupInitial: "Los lugares cercanos no sustituyen tu lugar asignado.",
+      dataExplore: "Datos publicados",
+      citywide: "Accesibilidad en toda la ciudad",
+      classificationNote: "“FH” indica código F para el edificio y H para estacionamiento. Son clasificaciones administrativas, no inspecciones independientes. Los porcentajes describen registros, no votantes.",
+      explorePlaces: "Explorar lugares de votación",
+      filterLabel: "Accesibilidad",
+      wardLabel: "Distrito electoral",
+      mapView: "Mapa",
+      listView: "Lista",
+      mapHelp: "Los símbolos usan formas y colores diferentes. La lista ofrece la misma información sin usar el mapa.",
+      showMore: "Ver más",
+      building: "Acceso al edificio",
+      parking: "Estacionamiento",
+      dataWarning: "El código publicado no verifica la entrada, acera, ruta ni condiciones del día de las elecciones. Llama al 215-686-VOTE si tienes preguntas.",
+      transit: "SEPTA y cómo llegar",
+      transitDisclaimer: "Las paradas cercanas son estimaciones geográficas. La proximidad no garantiza vehículos, zonas de abordaje, aceras ni viajes accesibles.",
+      findStops: "Buscar paradas de autobús y tranvía",
+      tripPlanner: "Planificador de SEPTA",
+      alerts: "Alertas de servicio",
+      septaAccess: "Accesibilidad de SEPTA",
+      directions: "Cómo llegar",
+      copyLink: "Copiar enlace",
+      printPlan: "Imprimir plan",
+      downloadText: "Guardar plan en texto",
+      policy: "Para administradores electorales y organizaciones",
+      compare: "Comparar la accesibilidad por distritos electorales y del Concejo",
+      policyHelp: "Las comparaciones por distrito electoral usan los códigos publicados. Las comparaciones del Concejo requieren datos GIS oficiales. Son herramientas de análisis preliminar, no conclusiones legales.",
+      groupBy: "Agrupar por",
+      sortBy: "Ordenar",
+      downloadCSV: "Descargar CSV",
+      priorities: "Prioridades de revisión",
+      area: "Área",
+      total: "Registros",
+      unknown: "Desconocido",
+      fhRate: "Porcentaje FH",
+      denominator: "Porcentaje FH = registros FH ÷ todos los registros del área, incluidos los desconocidos. Un mismo edificio puede aparecer en varias divisiones.",
+      rights: "Derechos y adaptaciones para votar",
+      machines: "Sistemas de votación accesibles",
+      machinesText: "Los lugares de votación de Pensilvania deben ofrecer un sistema accesible. Pide ayuda al personal electoral si la necesitas.",
+      assistance: "Asistencia de tu elección",
+      assistanceText: "Las personas que necesitan ayuda para votar por una discapacidad pueden elegir quién las asista, con ciertas restricciones legales.",
+      alternatives: "Boleta alternativa y otras opciones",
+      alternativesText: "Filadelfia describe opciones de boleta alternativa para personas elegibles cuyo lugar asignado no tiene la clasificación FH. Confirma los requisitos y plazos con los Comisionados Electorales.",
+      officialRights: "Información oficial sobre accesibilidad",
+      footerText: "Los datos se solicitan al abrir la página; no se garantiza actualización en tiempo real. Confirma siempre con las autoridades electorales.",
+      dataVerified: "Datos verificados por última vez: noviembre de 2026",
+      a11yStatement: "Declaración de accesibilidad"
+    }
+  };
+
+  // Published building codes from the City Commissioners' legend: [English, Spanish].
+  BallotGap.buildingCodes = {
+    F: ['Building fully accessible', 'Edificio totalmente accesible'],
+    A: ['Alternate entrance', 'Entrada alternativa'],
+    B: ['Building substantially accessible', 'Edificio sustancialmente accesible'],
+    R: ['Accessible with ramp', 'Accesible con rampa'],
+    M: ['Building accessibility modified', 'Accesibilidad del edificio modificada'],
+    N: ['Building not accessible', 'Edificio no accesible']
+  };
+
+  // Published parking codes: [English, Spanish].
+  BallotGap.parkingCodes = {
+    H: ['Accessible parking designated', 'Estacionamiento accesible designado'],
+    L: ['Loading zone', 'Zona de carga y descarga'],
+    N: ['No parking', 'Sin estacionamiento'],
+    G: ['General parking', 'Estacionamiento general']
+  };
+})(typeof self !== 'undefined' ? self : globalThis);

@@ -21,6 +21,17 @@ Automated tools catch only some barriers. Until the manual review is done, pleas
 
 The first automated scan found issues that are now fixed: labels for four page regions, the address field's autofill setting, an empty heading, and the language button's spoken name (now matching the words you see on screen).
 
+## Changed in version 5.3 (November 2026)
+
+- Removed the "/" single-key shortcut, which could be triggered by accident by speech-input users (WCAG 2.1.4).
+- Pop-up alerts are replaced with on-page status messages that screen readers announce.
+- Copy buttons now confirm with a spoken status message.
+- More interface text is in Spanish: barrier categories, filters, the checklist, the skip link, and research buttons. The language button is marked with its own language.
+- There's a single, high-contrast focus ring everywhere: an ink outline with a gold halo, plus support for Windows High Contrast (forced colors).
+- Body text is larger (17px base), and buttons and fields are at least 44–48px tall.
+- Table rows have row headers, and the table area can be scrolled by keyboard.
+- The checklist is grouped as a fieldset, and its ovals respond to keyboard and forced-colors modes.
+
 ## Known issues
 
 | Issue | Who it affects | Workaround | Status |
@@ -37,4 +48,4 @@ If something in BallotGap PHL doesn't work for you, I want to know.
 
 Please describe what you were trying to do, what happened, and what device, browser, or assistive technology you use. I aim to reply within 5 business days.
 
-**Last updated:** November 2026
+**Last updated:** November 18, 2026
