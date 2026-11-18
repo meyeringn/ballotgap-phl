@@ -1,0 +1,19 @@
+{
+  "name": "ballotgap-phl",
+  "version": "5.3.0",
+  "private": true,
+  "description": "Philadelphia polling place accessibility, from the City Commissioners' published data.",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/core.test.js && node scripts/check.mjs",
+    "check": "node scripts/check.mjs",
+    "test:e2e": "node tests/e2e/smoke.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

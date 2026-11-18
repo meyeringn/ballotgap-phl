@@ -1,8 +1,8 @@
-# BallotGap PHL 5.0
+# BallotGap PHL 5.3
 
 **Where do I vote? Can I access it? How do I get there?**
 
-BallotGap PHL is an independent, nonpartisan, single-file civic technology application for Philadelphia voters and election administrators. It translates published polling-place accessibility classifications into plain language and helps identify areas for further investigation. It is not an official election service.
+BallotGap PHL is an independent, nonpartisan civic technology application for Philadelphia voters and election administrators. It translates published polling-place accessibility classifications into plain language and helps identify areas for further investigation. It is not an official election service.
 
 **Data last verified:** November 2026
 
@@ -27,6 +27,7 @@ Disabled voters should not need to interpret GIS tables to find basic accessibil
 - On-demand nearby bus/trolley stop discovery from OpenStreetMap, with straight-line distances.
 - Links to SEPTA's official trip planner, service alerts and accessibility information.
 - English/Spanish interface, readable text voting-plan export, print view, and location-only deep links.
+- Election panel driven by `js/config.js`. Between elections it points to official dates instead of showing stale ones.
 - No user account, tracking pixels, cookies or persistent address storage. Page visits are counted anonymously with GoatCounter, which records the page, never your address.
 
 ## Instructions for voters
@@ -91,24 +92,50 @@ The app includes semantic sections, labeled controls, live error announcements, 
 
 ## Privacy
 
-BallotGap does not store address searches in cookies or local storage, does not transmit them to an application backend, and does not place them in shareable URLs. Address strings go to Nominatim; coordinates go to Philadelphia GIS. When requested, nearby stop coordinates go to Overpass. External map tiles and CDN libraries receive ordinary network request metadata, including IP addresses. Browser history can contain public polling-place identifiers, but not searched home addresses. Printed or downloaded plans may contain polling-place addresses, never searched home addresses.
+BallotGap does not store address searches in cookies or local storage, does not transmit them to an application backend, and does not place them in shareable URLs. Address strings go to Nominatim; coordinates go to Philadelphia GIS. When requested, nearby stop coordinates go to Overpass. External map tiles, the Leaflet CDN (unpkg), and GoatCounter (gc.zgo.at and meyeringn.goatcounter.com, page path only) receive ordinary network request metadata, including IP addresses. Fonts are self-hosted, so no font service sees your visit. Browser history can contain public polling-place identifiers, but not searched home addresses. Printed or downloaded plans may contain polling-place addresses, never searched home addresses.
 
 ## Architecture
 
-One `index.html` file, plain HTML/CSS/JavaScript, Leaflet from a CDN, OpenStreetMap tiles, public APIs, no backend, no build process, no secrets. Runtime data is held in memory. External dependencies and cross-origin availability may change.
+Static files with no backend, no build step, and no secrets:
+
+```
+index.html          markup and Content-Security-Policy
+css/styles.css      "Philly poll sign" design tokens and styles
+fonts/              self-hosted Bitter and Source Sans 3 (SIL Open Font License)
+js/config.js        version, election dates, data-verified date (edit this for routine updates)
+js/i18n.js          English and Spanish interface strings, code legends
+js/core.js          pure logic (validation, geocode and division matching, counts, CSV, election state)
+js/app.js           page behavior: data loading, map, list, lookup, exports
+tests/              unit tests (node:test) and an offline browser smoke test
+scripts/check.mjs   static checks: CSP covers every host, EN/ES parity, version labels
+```
+
+Leaflet comes from unpkg with Subresource Integrity, and map tiles come from OpenStreetMap. Runtime data is held in memory. A validated copy of the *public* polling-place dataset (never addresses) is cached in localStorage for 48 hours as an outage fallback, and address matching stays disabled while cached data is in use.
 
 ## GitHub Pages deployment
 
-1. Put `index.html` and `README.md` at the root of the repository.
-2. In repository **Settings → Pages**, select **Deploy from a branch**, then the branch and root folder.
-3. Open the published HTTPS URL. HTTPS is needed for location permission and clipboard access.
-4. Confirm the polling data, geocoding, GIS match, map/list, and optional stop lookup in a real browser before promoting the site.
+1. In repository **Settings → Pages**, select **Deploy from a branch**, then `main` and the root folder.
+2. Open the published HTTPS URL. HTTPS is needed for location permission and clipboard access.
+3. Confirm the polling data, geocoding, GIS match, map/list, and optional stop lookup in a real browser before an election.
 
-## Testing and known limitations
+## Updating for an election
 
-The JavaScript syntax and structural checks were performed in the delivery environment. Full live browser/API, keyboard, screen-reader, 320/375/768px viewport and end-to-end assignment testing **must be completed before public launch**. No unexecuted test is reported as passing.
+1. Confirm dates on [pa.gov](https://www.pa.gov/agencies/vote/elections/upcoming-elections) and [vote.phila.gov](https://vote.phila.gov).
+2. Add an entry to `elections` in `js/config.js` with English and Spanish labels, then update `dataVerified`.
+3. Run `npm test`. After Election Day the panel switches itself to "between elections."
 
-Known limitations: public API outages and CORS, geocoder ambiguity, GIS division data changes, no official confirmation of voter assignment, no authoritative SEPTA stop or arrival integration, incomplete transit-accessibility verification, potential Council GIS schema/coverage mismatch, no site audit, no source timestamp beyond local retrieval, and no independent WCAG audit. Spanish covers core controls and explanations but some code values and system-originated place names remain untranslated.
+## Testing
+
+- `npm test` runs the unit tests and static checks. There are no dependencies, only Node 18+.
+- `npm run test:e2e` runs an offline browser test against faked APIs, covering load, filters, provisional address matching, CSV export, Spanish, and rejection of bad data. It needs `npm install` and `npx playwright install chromium`.
+- GitHub Actions runs both on every pull request.
+- A weekly axe-core scan of the live site runs from the [meyeringn.github.io](https://github.com/meyeringn/meyeringn.github.io) repository.
+
+Automated tests don't replace manual keyboard, screen reader, zoom, and real-device testing with Disabled voters. That testing is still to do (see ACCESSIBILITY.md). Known limitations: public API outages and CORS, geocoder ambiguity, GIS division data changes, no official confirmation of voter assignment, no authoritative SEPTA stop or arrival integration, potential Council GIS schema/coverage mismatch, no site audit, and no source timestamp beyond local retrieval.
+
+## Working on BallotGap with Claude
+
+The repo includes a `CLAUDE.md` with project rules and commands, which Claude Code reads automatically, and an `a11y-reviewer` agent in `.claude/agents/`. See [docs/working-with-claude.md](docs/working-with-claude.md) for prompts that work well on this project.
 
 ## Roadmap
 
