@@ -6,7 +6,7 @@
   const BallotGap = (root.BallotGap = root.BallotGap || {});
 
   BallotGap.config = {
-    version: '5.3',
+    version: '5.4',
 
     // Shown in the footer. Update after re-checking the sources listed in README.md.
     dataVerified: ['Data last verified: November 2026', 'Datos verificados por última vez: noviembre de 2026'],
