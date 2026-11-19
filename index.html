@@ -7,7 +7,7 @@
 <!-- Every outside host must be listed here. Adding a service? Update this AND the Privacy section of README.md. `npm run check` verifies it. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://unpkg.com https://gc.zgo.at; style-src 'self' https://unpkg.com 'unsafe-inline'; img-src 'self' data: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://meyeringn.goatcounter.com; connect-src https://phl.carto.com https://services.arcgis.com https://services2.arcgis.com https://nominatim.openstreetmap.org https://overpass.kumi.systems https://meyeringn.goatcounter.com; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="theme-color" content="#0f4c81">
-<title>BallotGap PHL 5.3 | Accessible voting in Philadelphia</title>
+<title>BallotGap PHL 5.4 | Accessible voting in Philadelphia</title>
 <meta name="description" content="Explore Philadelphia polling place accessibility, compare wards, and prepare an accessible voting plan with official verification links.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://meyeringn.github.io/ballotgap-phl/">
@@ -28,7 +28,7 @@
 <header class="site-header">
   <div class="wrap">
     <div class="brand">
-      <div class="brand-row"><span class="brand-mark">BallotGap</span><span class="brand-tag">PHL</span><span class="brand-version"><span class="sr-only">version </span><span data-version>5.3</span></span></div>
+      <div class="brand-row"><span class="brand-mark">BallotGap</span><span class="brand-tag">PHL</span><span class="brand-version"><span class="sr-only">version </span><span data-version>5.4</span></span></div>
       <span class="brand-sub" data-en="Polling place accessibility · Philadelphia" data-es="Accesibilidad de centros de votación · Filadelfia">Polling place accessibility · Philadelphia</span>
     </div>
     <button class="lang" id="langBtn" type="button" lang="es">Español</button>
@@ -97,7 +97,7 @@
   <h2 data-en="For voters, advocates, and election researchers" data-es="Para votantes, defensores e investigadores electorales" id="partnersTitle">For voters, advocates, and election researchers</h2>
   <div class="two">
     <div class="card">
-      <h3 data-en="Barrier documentation · REV UP" data-es="Documentación de barreras · REV UP">Barrier documentation · REV UP</h3>
+      <h3 data-en="Barrier documentation" data-es="Documentación de barreras">Barrier documentation</h3>
       <p data-en="Document an access concern without uploading personal information. The report is downloaded to your device, not submitted or published by BallotGap." data-es="Documenta una barrera de acceso sin subir datos personales. El informe se descarga en tu dispositivo; BallotGap no lo envía ni publica.">Document an access concern without uploading personal information. The report is downloaded to your device, not submitted or published by BallotGap.</p>
       <p class="help"><span id="reportPlace" data-en="Select a polling place from the map or list first." data-es="Primero selecciona un lugar de votación en el mapa o la lista.">Select a polling place from the map or list first.</span></p>
       <label data-en="Barrier category" data-es="Categoría de barrera" for="barrierType">Barrier category</label>
@@ -122,7 +122,6 @@
       <h3 data-en="Nonpartisan election research" data-es="Investigación electoral no partidista">Nonpartisan election research</h3>
       <p data-en="Use ward comparisons and downloadable CSVs to identify records for follow-up. FH share is a share of division records, not a percentage of voters or unique buildings." data-es="Usa las comparaciones por distrito y los archivos CSV para identificar registros que requieren seguimiento. El porcentaje FH corresponde a registros de divisiones, no a votantes ni a edificios únicos.">Use ward comparisons and downloadable CSVs to identify records for follow-up. FH share is a share of division records, not a percentage of voters or unique buildings.</p>
       <p class="notice" id="qualitySummary" role="status" data-en="Dataset quality checks will appear after loading." data-es="Las verificaciones de calidad aparecerán al cargar los datos.">Dataset quality checks will appear after loading.</p>
-      <div class="actions"><a href="https://www.aapd.com/advocacy/voting/" rel="noopener noreferrer" target="_blank" data-en="REV UP voter resources" data-es="Recursos para votantes de REV UP">REV UP voter resources</a></div>
     </div>
   </div>
 </section>
@@ -294,7 +293,7 @@
     <div class="card">
       <h3 data-en="Built for voters and advocates" data-es="Para votantes y defensores">Built for voters and advocates</h3>
       <p data-en="BallotGap PHL is an independent, nonpartisan exploration of published Philadelphia polling-place accessibility classifications. It is not operated or endorsed by the City Commissioners or any advocacy organization." data-es="BallotGap PHL es una exploración independiente y no partidista de las clasificaciones publicadas de accesibilidad de los centros de votación de Filadelfia. No es operada ni respaldada por los Comisionados Electorales ni por organizaciones de defensa de derechos.">BallotGap PHL is an independent, nonpartisan exploration of published Philadelphia polling-place accessibility classifications. It is not operated or endorsed by the City Commissioners or any advocacy organization.</p>
-      <p><a href="https://atlas.phila.gov/voting" rel="noopener noreferrer" target="_blank">Philadelphia Atlas</a> · <a href="https://vote.phila.gov/" rel="noopener noreferrer" target="_blank" data-en="City Commissioners" data-es="Comisionados Electorales">City Commissioners</a> · <a href="https://www.aapd.com/advocacy/voting/" rel="noopener noreferrer" target="_blank">REV UP</a></p>
+      <p><a href="https://atlas.phila.gov/voting" rel="noopener noreferrer" target="_blank">Philadelphia Atlas</a> · <a href="https://vote.phila.gov/" rel="noopener noreferrer" target="_blank" data-en="City Commissioners" data-es="Comisionados Electorales">City Commissioners</a></p>
     </div>
     <div class="card">
       <h3 data-en="How to interpret the data" data-es="Cómo interpretar los datos">How to interpret the data</h3>
@@ -316,7 +315,7 @@
 
 <footer>
   <div class="wrap">
-    <p><span class="brand-mark">BallotGap PHL</span> <span data-version>5.3</span> · <span data-en="Independent, nonpartisan, open-source civic information." data-es="Información cívica independiente, no partidista y de código abierto.">Independent, nonpartisan, open-source civic information.</span> <span data-i="footerText">Data is requested at page load; no guarantee of real-time updates. Always confirm with election officials.</span></p>
+    <p><span class="brand-mark">BallotGap PHL</span> <span data-version>5.4</span> · <span data-en="Independent, nonpartisan, open-source civic information." data-es="Información cívica independiente, no partidista y de código abierto.">Independent, nonpartisan, open-source civic information.</span> <span data-i="footerText">Data is requested at page load; no guarantee of real-time updates. Always confirm with election officials.</span></p>
     <p id="dataVerified">Data last verified: November 2026</p>
     <p><a href="https://opendataphilly.org/datasets/polling-places/" rel="noopener noreferrer" target="_blank" data-en="Polling place data" data-es="Datos de centros de votación">Polling place data</a> · <a href="https://vote.phila.gov" rel="noopener noreferrer" target="_blank" data-en="City Commissioners" data-es="Comisionados Electorales">City Commissioners</a> · <a href="https://www.septa.org" rel="noopener noreferrer" target="_blank">SEPTA</a> · <a data-i="a11yStatement" href="https://github.com/meyeringn/ballotgap-phl/blob/main/ACCESSIBILITY.md" rel="noopener noreferrer" target="_blank">Accessibility statement</a> · <a href="https://github.com/meyeringn/ballotgap-phl" rel="noopener noreferrer" target="_blank" data-en="Source code" data-es="Código fuente">Source code</a></p>
     <p data-en="Built in Philadelphia by Nico Meyering, a Disabled civic technologist." data-es="Creado en Filadelfia por Nico Meyering, tecnólogo cívico Discapacitado.">Built in Philadelphia by Nico Meyering, a Disabled civic technologist.</p>
